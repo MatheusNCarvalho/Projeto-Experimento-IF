@@ -34,7 +34,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public void RealizarAvalicao(Bloco bloco, BlocoPlanta blocoPlanta, List<TipoAvaliacao> tipoAvaliacoes)
         {
            //Validar se o Tipo de Avaliação é a esolhida para o criterio de Avaliação
-            
             foreach (var bloco1 in Experimento.AreaExperimento.Blocos.Where(item => item.Equals(bloco)))
             {
                 foreach (var planta in bloco1.BlocoPlantas.Where(x => x.Equals(blocoPlanta)))
