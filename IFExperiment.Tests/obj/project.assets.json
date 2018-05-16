@@ -5761,11 +5761,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
       "projectName": "IFExperiment.Tests",
-      "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -5786,11 +5786,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Domain\\IFExperiment.Domain.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Domain\\IFExperiment.Domain.csproj"
+            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj"
             },
-            "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
+            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
             }
           }
         }

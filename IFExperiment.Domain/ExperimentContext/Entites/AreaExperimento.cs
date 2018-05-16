@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Shared.Entities;
 
 namespace IFExperiment.Domain.ExperimentContext.Entites
@@ -12,9 +13,12 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             Experimentro = experimentro;
             _blocos = new List<Bloco>();
+            Status = EStatus.Ativo;
         }
+
         public Experimento Experimentro { get; protected set; }
         public IReadOnlyCollection<Bloco> Blocos => _blocos.ToArray();
+        public EStatus Status { get; protected set; }
 
         public void AddBloco(Bloco bloco)
         {
@@ -24,6 +28,11 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public void RemoveBloco(Bloco bloco)
         {
             _blocos.Remove(bloco);
+        }
+
+        public void Cancelar()
+        {
+            Status = EStatus.Cancelado;
         }
     }
 }

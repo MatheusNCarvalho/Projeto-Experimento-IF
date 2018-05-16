@@ -225,11 +225,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
       "projectName": "IFExperiment.Domain",
-      "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -250,8 +250,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
+            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
             }
           }
         }

@@ -12,7 +12,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     {
 
         private readonly IList<Planta> _plantas;
-        private readonly IList<AreaExperimento> _areaExperimentos;
 
         public Experimento(Nome nome, int qtdRepeticao)
         {
@@ -21,7 +20,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             QtdRepeticao = qtdRepeticao;
             Status = EExperimentoStatus.Aberto;
             _plantas = new List<Planta>();
-            _areaExperimentos = new List<AreaExperimento>();
 
             AddNotifications(new ValidationContract()
                 .Requires()
@@ -35,17 +33,38 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public int QtdRepeticao { get; protected set; }
         public EExperimentoStatus Status { get; protected set; }
         public IReadOnlyCollection<Planta> Plantas => _plantas.ToArray();
-        public IReadOnlyCollection<AreaExperimento> AreaExperimentos => _areaExperimentos.ToArray();
+        public AreaExperimento AreaExperimento { get; protected set; }
 
         public void AddPlanta(Planta planta)
         {
-
             _plantas.Add(planta);
         }
 
         public void RemovePlanta(Planta planta)
         {
             _plantas.Remove(planta);
+        }
+
+        public void AddAreaExperimento(AreaExperimento area)
+        {
+            if (area == null)
+                AddNotification("AreaExperimento", "Area Experimento, é obrigatorio");
+
+            AreaExperimento = area;
+            Status = EExperimentoStatus.EmAdamento;
+        }
+
+
+        public void Cancelar()
+        {
+            Status = EExperimentoStatus.Cancelado;
+            AreaExperimento.Cancelar();
+        }
+
+        public void Concluir()
+        {
+            Status = EExperimentoStatus.Concluido;
+            DataConclusao = DateTime.Now;
         }
 
         public void GerarAreaExperimento()
@@ -70,23 +89,18 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
                 }
                 area.AddBloco(bloco);
             }
-
-            _areaExperimentos.Add(area);
-
-
+            AddAreaExperimento(area);
         }
+
 
         private bool checarSequencia(int valor, Bloco bloco)
         {
-            if (bloco.BlocoPlantas.Any(item => item.Nome.Equals("V" + valor)))
-                return true;
-            return false;
+            return bloco.BlocoPlantas.Any(item => item.Nome.Equals("V" + valor));
         }
         private int GerarSequencia(int tamnhoArray)
         {
             Random rdn = new Random();
-            int valor;
-            valor = rdn.Next(1, tamnhoArray + 1);
+            var valor = rdn.Next(1, tamnhoArray + 1);
             return valor;
         }
 

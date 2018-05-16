@@ -49,8 +49,8 @@ namespace IFExperiment.Tests.Entities
         public void DeveConter3BlocosCom9PlantasQuandoQtdRepeticaoFor3QuandoGerarAreaExperimento()
         {
             _experimento.GerarAreaExperimento();
-            Assert.AreEqual(true, _experimento.AreaExperimentos.Any(item => item.Blocos.Count == 3));
-            Assert.AreEqual(9, _experimento.AreaExperimentos.Sum(x => x.Blocos.Sum(x1 => x1.BlocoPlantas.Count)));
+            Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count ==3);
+            Assert.AreEqual(9, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoPlantas.Count)));
 
         }
 
@@ -67,8 +67,8 @@ namespace IFExperiment.Tests.Entities
             _experimento.AddPlanta(pCebola);
 
             _experimento.GerarAreaExperimento();
-            Assert.AreEqual(true, _experimento.AreaExperimentos.Any(item => item.Blocos.Count == 10));
-            Assert.AreEqual(30, _experimento.AreaExperimentos.Sum(x => x.Blocos.Sum(x1 => x1.BlocoPlantas.Count)));
+            Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count == 10);
+            Assert.AreEqual(30, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoPlantas.Count)));
 
         }
 

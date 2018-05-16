@@ -12543,11 +12543,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Api\\IFExperiment.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Api\\IFExperiment.Api.csproj",
       "projectName": "IFExperiment.Api",
-      "projectPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Api\\IFExperiment.Api.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Api\\IFExperiment.Api.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\source\\repos\\IFExperiment\\IFExperiment.Api\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
