@@ -27,15 +27,20 @@ namespace IFExperiment.Tests.Entities
             var pCebola = new Planta(_cebola);
             var pCeneoura = new Planta(_cenoura);
 
-            _experimento.AddPlanta(pTomate);
-            _experimento.AddPlanta(pCeneoura);
-            _experimento.AddPlanta(pCebola);
+            var experimentoPlantaTomante = new ExperimentoPlanta(_experimento, pTomate);
+            var experimentoPlantaCeneoura = new ExperimentoPlanta(_experimento, pCeneoura);
+            var experimentoPlantaCebola = new ExperimentoPlanta(_experimento, pCebola);
+
+            _experimento.AddPlanta(experimentoPlantaTomante);
+            _experimento.AddPlanta(experimentoPlantaCeneoura);
+            _experimento.AddPlanta(experimentoPlantaCebola);
         }
 
 
         [TestMethod]
         public void DeveCriarUmExperimentoQuandoValido()
         {
+            _experimento.Gerar();
             Assert.AreEqual(true, _experimento.Validated());
         }
 
@@ -49,7 +54,7 @@ namespace IFExperiment.Tests.Entities
         public void DeveConter3BlocosCom9PlantasQuandoQtdRepeticaoFor3QuandoGerarAreaExperimento()
         {
             _experimento.GerarAreaExperimento();
-            Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count ==3);
+            Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count == 3);
             Assert.AreEqual(9, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoPlantas.Count)));
 
         }
@@ -62,9 +67,13 @@ namespace IFExperiment.Tests.Entities
             var pCebola = new Planta(_cebola);
             var pCeneoura = new Planta(_cenoura);
 
-            _experimento.AddPlanta(pTomate);
-            _experimento.AddPlanta(pCeneoura);
-            _experimento.AddPlanta(pCebola);
+            var experimentoPlantaTomante = new ExperimentoPlanta(_experimento, pTomate);
+            var experimentoPlantaCeneoura = new ExperimentoPlanta(_experimento, pCeneoura);
+            var experimentoPlantaCebola = new ExperimentoPlanta(_experimento, pCebola);
+
+            _experimento.AddPlanta(experimentoPlantaTomante);
+            _experimento.AddPlanta(experimentoPlantaCeneoura);
+            _experimento.AddPlanta(experimentoPlantaCebola);
 
             _experimento.GerarAreaExperimento();
             Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count == 10);

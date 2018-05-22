@@ -14,6 +14,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public Nome Nome { get; protected set; }
         public EStatus Status { get; protected set; }
+        
 
         public void Ativo()
         {

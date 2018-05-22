@@ -20,7 +20,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public IReadOnlyCollection<BlocoPlanta> BlocoPlantas => _blocoPlantas.ToArray();
 
 
-        public void AddPlanta(int index, BlocoPlanta planta)
+        public void AddPlanta(BlocoPlanta planta)
         {
             _blocoPlantas.Add(planta);
         }

@@ -8,15 +8,16 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     {
         private readonly IList<TipoAvaliacao> _tipoAvalicoes;
 
-        public BlocoPlanta(string nome, Bloco bloco, Planta planta)
+        public BlocoPlanta(string nomeLinha, Bloco bloco, Planta planta)
         {
-            Nome = nome;
+
+            NomeLinha = nomeLinha;
             Bloco = bloco;
             Planta = planta;
             _tipoAvalicoes = new List<TipoAvaliacao>();
         }
 
-        public string Nome { get; protected set; }
+        public string NomeLinha { get; protected set; }
         public Bloco Bloco { get; protected set; }
         public Planta Planta { get; protected set; }
         public IReadOnlyCollection<TipoAvaliacao> TipoAvaliacoes => _tipoAvalicoes.ToArray();
