@@ -85,13 +85,13 @@ namespace IFExperiment.Tests.Entities
             var cenoura = new Nome("ceneroura");
 
             var experimento = new Experimento(nome, 3);
-            var pTomate = new Planta(tomate);
-            var pCebola = new Planta(cebola);
-            var pCeneoura = new Planta(cenoura);
+            var pTomate = new Tratamento(tomate);
+            var pCebola = new Tratamento(cebola);
+            var pCeneoura = new Tratamento(cenoura);
 
-            var experimentoPlantaTomante = new ExperimentoPlanta(experimento, pTomate);
-            var experimentoPlantaCeneoura = new ExperimentoPlanta(experimento, pCeneoura);
-            var experimentoPlantaCebola = new ExperimentoPlanta(experimento, pCebola);
+            var experimentoPlantaTomante = new ExperimentoTramento(experimento, pTomate);
+            var experimentoPlantaCeneoura = new ExperimentoTramento(experimento, pCeneoura);
+            var experimentoPlantaCebola = new ExperimentoTramento(experimento, pCebola);
 
             experimento.AddPlanta(experimentoPlantaTomante);
             experimento.AddPlanta(experimentoPlantaCeneoura);

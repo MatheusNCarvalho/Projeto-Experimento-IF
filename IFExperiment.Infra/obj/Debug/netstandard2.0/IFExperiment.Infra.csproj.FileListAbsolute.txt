@@ -1,9 +1,9 @@
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\bin\Debug\netstandard2.0\IFExperiment.Infra.deps.json
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\bin\Debug\netstandard2.0\IFExperiment.Infra.dll
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\bin\Debug\netstandard2.0\IFExperiment.Infra.pdb
-C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.csprojResolveAssemblyReference.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.csproj.CoreCompileInputs.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.AssemblyInfoInputs.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.AssemblyInfo.cs
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.dll
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.pdb
+C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Infra\obj\Debug\netstandard2.0\IFExperiment.Infra.csprojResolveAssemblyReference.cache

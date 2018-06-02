@@ -22,12 +22,12 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public Guid AvaliacaoExperimentoID { get; protected set; }
         public Guid PlantaId { get; protected set; }
         public AvaliacaoExperimento AvaliacaoExperimento { get; protected set; }
-        public Planta Planta { get; protected set; }
+        public BlocoPlanta BlocoPlanta { get; protected set; }
 
 
-        public void AddPlanta(Planta planta)
+        public void AddPlanta(BlocoPlanta blocoPlanta)
         {
-            Planta = planta;
+            BlocoPlanta = blocoPlanta;
         }
 
         public void AddAvaliacaoExperimento(AvaliacaoExperimento avaliacaoExperimento)

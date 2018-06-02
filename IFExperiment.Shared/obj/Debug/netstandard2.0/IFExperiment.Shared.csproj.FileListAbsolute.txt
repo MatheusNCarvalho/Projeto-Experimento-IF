@@ -7,10 +7,10 @@ C:\Users\Matheus\source\repos\IFExperiment\IFExperiment.Shared\obj\Debug\netstan
 C:\Users\Matheus\source\repos\IFExperiment\IFExperiment.Shared\bin\Debug\netstandard2.0\IFExperiment.Shared.pdb
 C:\Users\Matheus\source\repos\IFExperiment\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.dll
 C:\Users\Matheus\source\repos\IFExperiment\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.pdb
+C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.csprojResolveAssemblyReference.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\IFExperiment.Shared.deps.json
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\IFExperiment.Shared.dll
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\IFExperiment.Shared.pdb
-C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.csprojResolveAssemblyReference.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.csproj.CoreCompileInputs.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.AssemblyInfoInputs.cache
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.AssemblyInfo.cs

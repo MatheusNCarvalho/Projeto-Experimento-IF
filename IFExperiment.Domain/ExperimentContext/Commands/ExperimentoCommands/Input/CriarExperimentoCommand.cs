@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using IFExperiment.Domain.ExperimentContext.Commands.Input;
-using IFExperiment.Domain.ExperimentContext.Commands.PlantaCommands.Input;
+using IFExperiment.Domain.ExperimentContext.Commands.TratamentoCommands.Input;
 
 namespace IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Input
 {
@@ -8,16 +8,19 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Inp
     {
         public CriarExperimentoCommand()
         {
-            Plantas = new List<PlantaCommand>();
+            Tratamento = new List<TratamentoCommand>();
         }
 
         public string Nome { get; set; }
         public int QtdRepeticao { get; set; }
-        public IList<PlantaCommand> Plantas { get; set; }
-       // public AreaExperimento AreaExperimento { get; protected set; }
+        public IList<TratamentoCommand> Tratamento { get; set; }
 
         public override bool Validated()
         {
+            foreach (var tratamentoCommand in Tratamento)
+            {
+                AddNotifications(tratamentoCommand.Notifications);
+            }
             return Valid;
         }
     }

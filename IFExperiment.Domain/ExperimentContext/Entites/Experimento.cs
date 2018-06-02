@@ -11,14 +11,14 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     public class Experimento : EntityBase
     {
 
-        private readonly IList<ExperimentoPlanta> _experimentoPlantas;
+        private readonly IList<ExperimentoTramento> _experimentoPlantas;
 
         public Experimento(Nome nome, int qtdRepeticao)
         {
             Nome = nome;
             DataInicio = DateTime.Now;
             QtdRepeticao = qtdRepeticao;
-            _experimentoPlantas = new List<ExperimentoPlanta>();
+            _experimentoPlantas = new List<ExperimentoTramento>();
 
             AddNotifications(new ValidationContract()
                 .Requires()
@@ -32,17 +32,17 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public DateTime DataConclusao { get; protected set; }
         public int QtdRepeticao { get; protected set; }
         public EExperimentoStatus Status { get; protected set; }
-        public IReadOnlyCollection<ExperimentoPlanta> Plantas => _experimentoPlantas.ToArray();
+        public IReadOnlyCollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();
         public AreaExperimento AreaExperimento { get; protected set; }
 
-        public void AddPlanta(ExperimentoPlanta planta)
+        public void AddTratamento(ExperimentoTramento tramento)
         {
-            _experimentoPlantas.Add(planta);
+            _experimentoPlantas.Add(tramento);
         }
 
-        public void RemovePlanta(ExperimentoPlanta planta)
+        public void RemoveTratamento(ExperimentoTramento tramento)
         {
-            _experimentoPlantas.Remove(planta);
+            _experimentoPlantas.Remove(tramento);
         }
 
         public void AddAreaExperimento(AreaExperimento area)
@@ -62,7 +62,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             if (_experimentoPlantas.Count == 0)
             {
-                AddNotification("Plantas", "Experimento deve conter pelos uma Planta");
+                AddNotification("Plantas", "Experimento deve conter pelos uma Tratamento");
                 return;
             }
 
@@ -99,7 +99,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
                         seq = GerarSequencia(_experimentoPlantas.Count);
                     }
 
-                    var blocoPlanta = new BlocoPlanta("V" + seq, bloco, planta.Planta);
+                    var blocoPlanta = new BlocoPlanta("P" + seq, bloco, planta.Tratamento);
                     bloco.AddPlanta(blocoPlanta);
                     count++;
                 }
@@ -111,7 +111,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         private bool checarSequencia(int valor, Bloco bloco)
         {
-            return bloco.BlocoPlantas.Any(item => item.NomeLinha.Equals("V" + valor));
+            return bloco.BlocoPlantas.Any(item => item.NomeParcela.Equals("P" + valor));
         }
         private int GerarSequencia(int tamnhoArray)
         {
@@ -124,7 +124,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             AddNotifications(Nome.Notifications);
             if (_experimentoPlantas.Count == 0)
-                AddNotification("Plantas", "Experimento deve conter pelos uma Planta");
+                AddNotification("Plantas", "Experimento deve conter pelos uma Tratamento");
 
             return Valid;
         }

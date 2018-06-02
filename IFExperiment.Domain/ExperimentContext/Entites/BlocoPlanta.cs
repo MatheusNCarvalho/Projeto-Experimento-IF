@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using IFExperiment.Shared.Entities;
 
@@ -8,18 +9,19 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     {
         private readonly IList<TipoAvaliacao> _tipoAvalicoes;
 
-        public BlocoPlanta(string nomeLinha, Bloco bloco, Planta planta)
+        public BlocoPlanta(string nomeParcela, Bloco bloco, Tratamento tratamento)
         {
 
-            NomeLinha = nomeLinha;
+            NomeParcela = nomeParcela;
             Bloco = bloco;
-            Planta = planta;
+            Tratamento = tratamento;
             _tipoAvalicoes = new List<TipoAvaliacao>();
         }
 
-        public string NomeLinha { get; protected set; }
+        public string NomeParcela { get; protected set; }
         public Bloco Bloco { get; protected set; }
-        public Planta Planta { get; protected set; }
+        public DateTime DataAvaliacao { get; protected set; }
+        public Tratamento Tratamento { get; protected set; }
         public IReadOnlyCollection<TipoAvaliacao> TipoAvaliacoes => _tipoAvalicoes.ToArray();
 
         public void AddTipoAvaliacao(TipoAvaliacao artefato)
@@ -29,6 +31,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public void AddAllTipoAvalicao(List<TipoAvaliacao> tipoAvaliacaos)
         {
+            DataAvaliacao = DateTime.Now;
             foreach (var tipoAvaliacao in tipoAvaliacaos)
             {
                 _tipoAvalicoes.Add(tipoAvaliacao);

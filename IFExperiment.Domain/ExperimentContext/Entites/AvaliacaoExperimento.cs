@@ -21,9 +21,10 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public DateTime DataAvalicao { get; protected set; }
         public Experimento Experimento { get; protected set; }
-        public  EAvaliacao Status { get; protected set; }
+        public EAvaliacao Status { get; protected set; }
         public DateTime DataConclusao { get;  protected set; }
         public IReadOnlyCollection<TipoAvaliacao> TipoAvaliacoes => _tipoAvaliacoes.ToArray();
+        public IReadOnlyCollection<ColetaExperimento> ColetaExperimentos { get; set; }
 
 
         public void Gerar()
@@ -63,19 +64,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             _tipoAvaliacoes.Remove(tipoAvaliacao);
         }
-
-        public void RealizarAvalicao(Bloco bloco, BlocoPlanta blocoPlanta, List<TipoAvaliacao> tipoAvaliacoes)
-        {
-           //Validar se o Tipo de Avaliação é a esolhida para o criterio de Avaliação
-            foreach (var bloco1 in Experimento.AreaExperimento.Blocos.Where(item => item.Equals(bloco)))
-            {
-                foreach (var planta in bloco1.BlocoPlantas.Where(x => x.Equals(blocoPlanta)))
-                {
-                    planta.AddAllTipoAvalicao(tipoAvaliacoes);
-                }
-            }
-        }
-
 
         public override bool Validated()
         {
