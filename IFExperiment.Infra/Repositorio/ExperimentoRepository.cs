@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Infra.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Repositorio
 {
-   public class ExperimentoRepository : IExperimentoRepository
-   {
+    public class ExperimentoRepository : IExperimentoRepository
+    {
 
-       private readonly AppDataContext _db;
+        private readonly AppDataContext _db;
 
-       public ExperimentoRepository(AppDataContext db)
-       {
-           _db = db;
-       }
+        public ExperimentoRepository(AppDataContext db)
+        {
+            _db = db;
+        }
 
         public void Dispose()
         {

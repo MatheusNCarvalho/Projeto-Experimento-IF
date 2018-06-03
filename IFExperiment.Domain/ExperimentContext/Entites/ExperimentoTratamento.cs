@@ -13,11 +13,15 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             Tratamento = tratamento;
         }
 
-        public Guid AreaExperimentoId { get; protected set; }
-        public Guid PlantaId { get; protected set; }
+        //Para o EF
+        protected ExperimentoTramento() { }
+       
+
+        public Guid ExperimentoId { get; protected set; }
+        public Guid TratamentoId { get; protected set; }
         public int Qtd { get; protected set; }
-        public Experimento Experimento { get; protected set; }
-        public Tratamento Tratamento { get; protected set; }
+        public virtual Experimento Experimento { get; protected set; }
+        public virtual Tratamento Tratamento { get; protected set; }
 
     }
 }

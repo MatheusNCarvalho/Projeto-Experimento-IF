@@ -1,4 +1,5 @@
-﻿using IFExperiment.Domain.ExperimentContext.Enums;
+﻿using System;
+using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Domain.ExperimentContext.ValueObjects;
 using IFExperiment.Shared.Entities;
 
@@ -11,8 +12,15 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             Nome = nome;
         }
 
+        //Para o EF
+        protected Tratamento() { }
+      
+      
+
         public Nome Nome { get; protected set; }
         public EStatus Status { get; protected set; }
+        public Guid ExperimentoTratamentoId { get; protected set; }
+        public ExperimentoTramento ExperimentoTramento { get; protected set; }
 
 
         public void Ativo()

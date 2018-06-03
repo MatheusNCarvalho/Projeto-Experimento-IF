@@ -56,7 +56,7 @@ namespace IFExperiment.Tests.Entities
         {
             
             Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count == 3);
-            Assert.AreEqual(9, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoPlantas.Count)));
+            Assert.AreEqual(9, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoTratamentos.Count)));
 
         }
 
@@ -78,7 +78,7 @@ namespace IFExperiment.Tests.Entities
 
             _experimento.GerarAreaExperimento();
             Assert.AreEqual(true, _experimento.AreaExperimento.Blocos.Count == 10);
-            Assert.AreEqual(30, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoPlantas.Count)));
+            Assert.AreEqual(30, _experimento.AreaExperimento.Blocos.Sum((x1 => x1.BlocoTratamentos.Count)));
 
         }
 

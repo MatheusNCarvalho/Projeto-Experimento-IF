@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Shared.Entities;
@@ -16,8 +17,13 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             Status = EStatus.Ativo;
         }
 
-        public Experimento Experimentro { get; protected set; }
-        public IReadOnlyCollection<Bloco> Blocos => _blocos.ToArray();
+        //Para o EF
+        protected AreaExperimento() { }
+       
+
+        public Guid ExperimentroId { get; protected set; }
+        public virtual Experimento Experimentro { get; protected set; }
+        public virtual ICollection<Bloco> Blocos => _blocos.ToArray();
         public EStatus Status { get; protected set; }
 
         public void AddBloco(Bloco bloco)

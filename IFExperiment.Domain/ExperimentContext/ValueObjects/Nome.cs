@@ -1,11 +1,11 @@
 ﻿
 
+using FluentValidator;
 using FluentValidator.Validation;
-using IFExperiment.Shared.Entities;
 
 namespace IFExperiment.Domain.ExperimentContext.ValueObjects
 {
-    public class Nome : EntityBase
+    public class Nome : Notifiable
     {
         public Nome(string valor)
         {
@@ -17,6 +17,9 @@ namespace IFExperiment.Domain.ExperimentContext.ValueObjects
                 .HasMaxLen(Valor, 40, "Valor", "O nome deve conter no maximo 40 caracteres")
             );
         }
+
+        protected Nome() { }
+        
 
         public string Valor { get; protected set; }
 

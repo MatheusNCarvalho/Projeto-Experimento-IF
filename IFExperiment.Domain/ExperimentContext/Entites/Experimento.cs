@@ -26,14 +26,17 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             );
         }
 
+        //Para o EF
+        protected Experimento(){}
+
         public Nome Nome { get; protected set; }
         public string Codigo { get; protected set; }
         public DateTime DataInicio { get; protected set; }
         public DateTime DataConclusao { get; protected set; }
         public int QtdRepeticao { get; protected set; }
         public EExperimentoStatus Status { get; protected set; }
-        public IReadOnlyCollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();
-        public AreaExperimento AreaExperimento { get; protected set; }
+        public virtual ICollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();
+        public virtual AreaExperimento AreaExperimento { get; protected set; }
 
         public void AddTratamento(ExperimentoTramento tramento)
         {
@@ -99,7 +102,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
                         seq = GerarSequencia(_experimentoPlantas.Count);
                     }
 
-                    var blocoPlanta = new BlocoPlanta("P" + seq, bloco, planta.Tratamento);
+                    var blocoPlanta = new BlocoTratamento("P" + seq, bloco, planta.Tratamento);
                     bloco.AddPlanta(blocoPlanta);
                     count++;
                 }
@@ -111,7 +114,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         private bool checarSequencia(int valor, Bloco bloco)
         {
-            return bloco.BlocoPlantas.Any(item => item.NomeParcela.Equals("P" + valor));
+            return bloco.BlocoTratamentos.Any(item => item.NomeParcela.Equals("P" + valor));
         }
         private int GerarSequencia(int tamnhoArray)
         {

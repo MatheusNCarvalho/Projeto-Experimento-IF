@@ -21,19 +21,19 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public Guid AvaliacaoExperimentoID { get; protected set; }
         public Guid PlantaId { get; protected set; }
-        public AvaliacaoExperimento AvaliacaoExperimento { get; protected set; }
-        public BlocoPlanta BlocoPlanta { get; protected set; }
+       // public AvaliacaoExperimento AvaliacaoExperimento { get; protected set; }
+        public BlocoTratamento BlocoTratamento { get; protected set; }
 
 
-        public void AddPlanta(BlocoPlanta blocoPlanta)
+        public void AddPlanta(BlocoTratamento blocoTratamento)
         {
-            BlocoPlanta = blocoPlanta;
+            BlocoTratamento = blocoTratamento;
         }
 
-        public void AddAvaliacaoExperimento(AvaliacaoExperimento avaliacaoExperimento)
-        {
-            AvaliacaoExperimento = avaliacaoExperimento;
-        }
+        //public void AddAvaliacaoExperimento(AvaliacaoExperimento avaliacaoExperimento)
+        //{
+        //    AvaliacaoExperimento = avaliacaoExperimento;
+        //}
 
 
         public void AddValor(string valor)
