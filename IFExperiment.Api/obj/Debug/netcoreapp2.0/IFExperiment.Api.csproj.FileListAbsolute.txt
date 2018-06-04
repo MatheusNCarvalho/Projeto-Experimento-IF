@@ -16,3 +16,4 @@ C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Api\obj\Debug\net
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Api\obj\Debug\netcoreapp2.0\IFExperiment.Api.csproj.CopyComplete
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Api\obj\Debug\netcoreapp2.0\IFExperiment.Api.dll
 C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Api\obj\Debug\netcoreapp2.0\IFExperiment.Api.pdb
+C:\Users\Matheus\workspace\Projeto-Experimento-IF\IFExperiment.Api\bin\Debug\netcoreapp2.0\IFExperiment.Api.xml

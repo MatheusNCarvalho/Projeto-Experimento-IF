@@ -6,11 +6,11 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     public class ExperimentoTramento : EntityBase
     {
 
-        public ExperimentoTramento(Experimento experimento, Tratamento tratamento)
+        public ExperimentoTramento(Guid experimentoId, Guid tratamentoId)
         {
-           
-            Experimento = experimento;
-            Tratamento = tratamento;
+
+            ExperimentoId = experimentoId;
+            TratamentoId = tratamentoId;
         }
 
         //Para o EF

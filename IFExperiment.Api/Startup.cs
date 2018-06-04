@@ -1,10 +1,14 @@
-﻿using IFExperiment.Infra.Contexts;
+﻿using IFExperiment.Domain.ExperimentContext.Handlers;
+using IFExperiment.Domain.ExperimentContext.Repositorio;
+using IFExperiment.Infra.Contexts;
+using IFExperiment.Infra.Repositorio;
 using IFExperiment.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace IFExperiment.Api
 {
@@ -16,7 +20,19 @@ namespace IFExperiment.Api
         {
 
             services.AddMvc();
-          //  services.AddScoped<AppDataContext>(_ => new AppDataContext(Settings.ConnectionString));
+
+            services.AddResponseCompression();
+
+            services.AddScoped<AppDataContext, AppDataContext>();
+            services.AddTransient<IExperimentoRepository, ExperimentoRepository>();
+            services.AddTransient<ITratamentoRepository, TratamentoRepository>();
+            services.AddTransient<TratamentoHandler, TratamentoHandler>();
+            services.AddTransient<ExperimentoHandler, ExperimentoHandler>();
+
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new Info { Title = "Experimento", Version = "v1" });
+            });
 
         }
 
@@ -24,14 +40,17 @@ namespace IFExperiment.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
-            app.Run(async (context) =>
+            app.UseMvc();
+
+            app.UseResponseCompression();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Experimentos - V1");
             });
+
         }
     }
 }

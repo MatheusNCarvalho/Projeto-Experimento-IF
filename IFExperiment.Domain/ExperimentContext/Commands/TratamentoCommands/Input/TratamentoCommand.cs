@@ -1,19 +1,29 @@
 ﻿using FluentValidator.Validation;
-using IFExperiment.Domain.ExperimentContext.Commands.Input;
+using IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Input;
 
 namespace IFExperiment.Domain.ExperimentContext.Commands.TratamentoCommands.Input
 {
     public class TratamentoCommand : Command
     {
-        public string Nome { get;  set; }
+        public string Id { get; set; }
+        public string Nome { get; set; }
 
         public override bool Validated()
         {
-            AddNotifications(new ValidationContract()
-                .Requires()
-                .HasMinLen(Nome, 3, "Valor", "O nome deve conter pelo menos 3 caracteres")
-                .HasMaxLen(Nome, 40, "Valor", "O nome deve conter no maximo 40 caracteres")
-            );
+            if (!string.IsNullOrEmpty(Id))
+            {
+                AddNotifications(new ValidationContract()
+                    .IsNotNull(Id, "Id", "Obrigatorio informar pelo menos um Tratamento!")
+                );
+            }
+
+            if (!string.IsNullOrEmpty(Nome))
+            {
+                AddNotifications(new ValidationContract()
+                    .HasMaxLen(Nome, 255, "", "Nome deve conter no maximo 255 caracteres!")
+                    .HasMinLen(Nome, 3, "Nome", "Nome deve conter no minimo 3 caracteres!")
+                );
+            }
             return Valid;
         }
     }

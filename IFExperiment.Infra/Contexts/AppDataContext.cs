@@ -31,10 +31,7 @@ namespace IFExperiment.Infra.Contexts
             modelBuilder.ApplyConfiguration(new BlocoTratamentoMap());
             modelBuilder.ApplyConfiguration(new BlocoMap());
             modelBuilder.ApplyConfiguration(new AreaExperimentoMap());
-            
             modelBuilder.ApplyConfiguration(new ExperimentoTratamentoMap());
-
-
 
             base.OnModelCreating(modelBuilder);
         }

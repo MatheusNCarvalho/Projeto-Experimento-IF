@@ -27,9 +27,9 @@ namespace IFExperiment.Tests.Entities
             var pCebola = new Tratamento(_cebola);
             var pCeneoura = new Tratamento(_cenoura);
 
-            var experimentoPlantaTomante = new ExperimentoTramento(_experimento, pTomate);
-            var experimentoPlantaCeneoura = new ExperimentoTramento(_experimento, pCeneoura);
-            var experimentoPlantaCebola = new ExperimentoTramento(_experimento, pCebola);
+            var experimentoPlantaTomante = new ExperimentoTramento(_experimento.Id, pTomate.Id);
+            var experimentoPlantaCeneoura = new ExperimentoTramento(_experimento.Id, pCeneoura.Id);
+            var experimentoPlantaCebola = new ExperimentoTramento(_experimento.Id, pCebola.Id);
 
     
             _experimento.AddTratamento(experimentoPlantaTomante);
@@ -68,9 +68,9 @@ namespace IFExperiment.Tests.Entities
             var pCebola = new Tratamento(_cebola);
             var pCeneoura = new Tratamento(_cenoura);
 
-            var experimentoPlantaTomante = new ExperimentoTramento(_experimento, pTomate);
-            var experimentoPlantaCeneoura = new ExperimentoTramento(_experimento, pCeneoura);
-            var experimentoPlantaCebola = new ExperimentoTramento(_experimento, pCebola);
+            var experimentoPlantaTomante = new ExperimentoTramento(_experimento.Id, pTomate.Id);
+            var experimentoPlantaCeneoura = new ExperimentoTramento(_experimento.Id, pCeneoura.Id);
+            var experimentoPlantaCebola = new ExperimentoTramento(_experimento.Id, pCebola.Id);
 
             _experimento.AddTratamento(experimentoPlantaTomante);
             _experimento.AddTratamento(experimentoPlantaCeneoura);

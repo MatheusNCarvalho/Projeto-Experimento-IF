@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using IFExperiment.Domain.ExperimentContext.Entites;
-using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Infra.Contexts;
+using IFExperiment.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Repositorio
@@ -26,12 +26,15 @@ namespace IFExperiment.Infra.Repositorio
 
         public IList<Experimento> GetByRange(int skip = 0, int take = 25)
         {
-            return _db.Experimentos.OrderBy(x => x.Nome).Skip(skip).Take(take).ToList();
+            //AsNoTracking para não trazer o proxy na consulta
+            return _db.Experimentos.OrderBy(x => x.Nome).Skip(skip).Take(take).AsNoTracking().ToList();
         }
 
         public Experimento GetById(Guid id)
         {
-            return _db.Experimentos.Find(id);
+            //Find() ainda não suporte AsNoTracking
+            //FirstOrDefault pegar o primeiro item que encontrar
+            return _db.Experimentos.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
         public void Save(Experimento experimento)
@@ -48,7 +51,7 @@ namespace IFExperiment.Infra.Repositorio
 
         public void Update(Experimento experimento)
         {
-            _db.Entry<Experimento>(experimento).State = EntityState.Modified;
+            _db.Entry(experimento).State = EntityState.Modified;
             _db.SaveChanges();
         }
 

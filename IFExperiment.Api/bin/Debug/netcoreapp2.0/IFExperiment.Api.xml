@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IFExperiment.Api</name>
+    </assembly>
+    <members>
+        <member name="M:IFExperiment.Api.Controllers.ExperimentoController.Post(IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Input.CriarExperimentoCommand)">
+            <summary>
+            Criando um Experimento
+            </summary>
+            <remarks>Descricao do campo Status 0 = Aberto, 1 = Em Adamento, 2 = Concluido, 3 = Cancelado </remarks>
+        </member>
+    </members>
+</doc>

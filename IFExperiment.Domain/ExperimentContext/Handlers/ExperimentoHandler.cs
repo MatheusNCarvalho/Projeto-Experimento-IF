@@ -3,6 +3,8 @@ using FluentValidator;
 using IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Input;
 using IFExperiment.Domain.ExperimentContext.Commands.Outputs;
 using IFExperiment.Domain.ExperimentContext.Entites;
+using IFExperiment.Domain.ExperimentContext.Enums;
+using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Domain.ExperimentContext.ValueObjects;
 using IFExperiment.Shared.Commands;
 
@@ -13,13 +15,24 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
         ICommandHandler<CriarExperimentoCommand>
     {
 
+
+        private readonly IExperimentoRepository _experimentoRepository;
+        private readonly ITratamentoRepository _tratamentoRepository;
+
+        public ExperimentoHandler(IExperimentoRepository experimentoRepository, ITratamentoRepository tratamentoRepository)
+        {
+            _experimentoRepository = experimentoRepository;
+            _tratamentoRepository = tratamentoRepository;
+        }
+
         public ICommandResult Handler(CriarExperimentoCommand command)
         {
 
             try
             {
+                AddNotifications(command.Notifications);
                 command.Validated();
-
+                
                 //Validar os commands
                 if (Invalid)
                     return new CommandResult(false, "Por favor, corrija os campos abaixo", 400, Notifications);
@@ -32,10 +45,20 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                 foreach (var tratamentoCommand in command.Tratamento)
                 {
                     //busco no banco pelo tratamento
-                    //experimento.AddTratamento(new ExperimentoTramento(experimento, tramento));
+                    var tramento = _tratamentoRepository.GetById(Guid.Parse(tratamentoCommand.Id));
+                    
+                    experimento.AddTratamento(new ExperimentoTramento(experimento.Id, tramento.Id));
                 }
 
-                experimento.Gerar();
+                if (command.Status.Equals(ECommandStatus.Aberto))
+                {
+                    experimento.Arquivar();
+                }
+                else if(command.Status.Equals(ECommandStatus.EmAdamento))
+                {
+                    experimento.Gerar();
+                }
+                
 
                 //Validar entidades e VOs
                 AddNotifications(experimento.Notifications);
@@ -43,14 +66,16 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                     return new CommandResult(false, "Por favor, corrija os campos abaixo", 400, Notifications);
 
                 //Persistir experimento
-
+                _experimentoRepository.Save(experimento);
                 //Retornar o resultado para a tela
-                throw new NotImplementedException();
+              return new CommandResult(true,"Salvo com sucesso!", 200, new {Id = experimento.Id, Nome = experimento.Nome.ToString(), Status = experimento.Status} );
             }
             catch (Exception e)
             {
-                return new CommandResult(e);
+              return new CommandResult(e);
             }
         }
+
+        
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentValidator;
-using IFExperiment.Domain.ExperimentContext.Enums;
+using IFExperiment.Shared.Enums;
 
 namespace IFExperiment.Shared.Entities
 {

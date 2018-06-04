@@ -1,4 +1,4 @@
-﻿namespace IFExperiment.Domain.ExperimentContext.Enums
+﻿namespace IFExperiment.Shared.Enums
 {
     public enum ESimNao
     {
