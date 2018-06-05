@@ -29,10 +29,17 @@ namespace IFExperiment.Infra.Repositorio
             return _db.Tratamentos.OrderBy(x => x.Nome).Skip(skip).Take(take).AsNoTracking().ToList();
         }
 
-        public Tratamento GetById(Guid id)
+        public Tratamento GetByIdAsNoTracking(Guid id)
         {
             return _db.Tratamentos.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
+
+        public Tratamento GetByIdTracking(Guid id)
+        {
+            return _db.Tratamentos.Find(id);
+        }
+
+       
 
         public void Save(Tratamento tratamento)
         {

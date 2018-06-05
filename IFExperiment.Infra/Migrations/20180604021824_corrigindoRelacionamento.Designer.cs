@@ -3,15 +3,17 @@ using System;
 using IFExperiment.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IFExperiment.Infra.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180604021824_corrigindoRelacionamento")]
+    partial class corrigindoRelacionamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,9 +137,8 @@ namespace IFExperiment.Infra.Migrations
 
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.ExperimentoTramento", b =>
                 {
-                    b.Property<Guid>("ExperimentoId");
-
-                    b.Property<Guid>("TratamentoId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataAlteracao");
 
@@ -147,14 +148,18 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<int>("Excluido");
 
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("ExperimentoId");
 
                     b.Property<int>("Qtd");
 
-                    b.HasKey("ExperimentoId", "TratamentoId");
+                    b.Property<Guid>("TratamentoId");
 
-                    b.HasIndex("TratamentoId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExperimentoId");
+
+                    b.HasIndex("TratamentoId")
+                        .IsUnique();
 
                     b.ToTable("ExperimentosTratamentos");
                 });
@@ -176,7 +181,7 @@ namespace IFExperiment.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tratamentos");
+                    b.ToTable("Tramentos");
                 });
 
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", b =>
@@ -236,8 +241,8 @@ namespace IFExperiment.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Tratamento", "Tratamento")
-                        .WithMany()
-                        .HasForeignKey("TratamentoId")
+                        .WithOne("ExperimentoTramento")
+                        .HasForeignKey("IFExperiment.Domain.ExperimentContext.Entites.ExperimentoTramento", "TratamentoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -252,7 +257,7 @@ namespace IFExperiment.Infra.Migrations
                                 .HasColumnName("Nome")
                                 .HasColumnType("varchar(255)");
 
-                            b1.ToTable("Tratamentos","public");
+                            b1.ToTable("Tramentos","public");
 
                             b1.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Tratamento")
                                 .WithOne("Nome")

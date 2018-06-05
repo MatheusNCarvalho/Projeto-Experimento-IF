@@ -30,12 +30,19 @@ namespace IFExperiment.Infra.Repositorio
             return _db.Experimentos.OrderBy(x => x.Nome).Skip(skip).Take(take).AsNoTracking().ToList();
         }
 
-        public Experimento GetById(Guid id)
+        public Experimento GetByIdAsNoTracking(Guid id)
         {
             //Find() ainda não suporte AsNoTracking
             //FirstOrDefault pegar o primeiro item que encontrar
             return _db.Experimentos.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
+
+        public Experimento GetByIdTracking(Guid id)
+        {
+            return _db.Experimentos.Find(id);
+        }
+
+      
 
         public void Save(Experimento experimento)
         {

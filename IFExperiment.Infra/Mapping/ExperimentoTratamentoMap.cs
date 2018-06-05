@@ -14,13 +14,14 @@ namespace IFExperiment.Infra.Mapping
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 
-            builder.HasOne(x => x.Experimento)
-                .WithMany(x => x.ExperimentoTramentos)
-                .HasForeignKey(x => x.ExperimentoId)
-                .IsRequired();
+            //builder.HasOne(x => x.Experimento)
+            //    .WithMany(x => x.ExperimentoTramentos)
+            //    .HasForeignKey(x => x.ExperimentoId)
+            //    .IsRequired();
 
-            builder.HasOne(x => x.Tratamento)
-                .WithOne(x => x.ExperimentoTramento);
+            builder.HasKey(x => new {x.ExperimentoId, x.TratamentoId});
+
+
         }
     }
 }

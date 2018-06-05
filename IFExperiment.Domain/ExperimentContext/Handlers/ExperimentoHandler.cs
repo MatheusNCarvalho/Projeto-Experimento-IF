@@ -10,7 +10,7 @@ using IFExperiment.Shared.Commands;
 
 namespace IFExperiment.Domain.ExperimentContext.Handlers
 {
-    public class ExperimentoHandler : 
+    public class ExperimentoHandler :
         Notifiable,
         ICommandHandler<CriarExperimentoCommand>
     {
@@ -32,7 +32,7 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
             {
                 AddNotifications(command.Notifications);
                 command.Validated();
-                
+
                 //Validar os commands
                 if (Invalid)
                     return new CommandResult(false, "Por favor, corrija os campos abaixo", 400, Notifications);
@@ -44,21 +44,19 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                 var experimento = new Experimento(nomeExperimento, command.QtdRepeticao);
                 foreach (var tratamentoCommand in command.Tratamento)
                 {
-                    //busco no banco pelo tratamento
-                    var tramento = _tratamentoRepository.GetById(Guid.Parse(tratamentoCommand.Id));
-                    
-                    experimento.AddTratamento(new ExperimentoTramento(experimento.Id, tramento.Id));
+                    var tratamento = _tratamentoRepository.GetByIdTracking(Guid.Parse(tratamentoCommand.Id));
+                    experimento.AddTratamento(new ExperimentoTramento(experimento, tratamento));
                 }
 
                 if (command.Status.Equals(ECommandStatus.Aberto))
                 {
                     experimento.Arquivar();
                 }
-                else if(command.Status.Equals(ECommandStatus.EmAdamento))
+                else if (command.Status.Equals(ECommandStatus.EmAdamento))
                 {
                     experimento.Gerar();
                 }
-                
+
 
                 //Validar entidades e VOs
                 AddNotifications(experimento.Notifications);
@@ -68,14 +66,14 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                 //Persistir experimento
                 _experimentoRepository.Save(experimento);
                 //Retornar o resultado para a tela
-              return new CommandResult(true,"Salvo com sucesso!", 200, new {Id = experimento.Id, Nome = experimento.Nome.ToString(), Status = experimento.Status} );
+                return new CommandResult(true, "Salvo com sucesso!", 200, new { Id = experimento.Id, Nome = experimento.Nome.ToString(), Status = experimento.Status });
             }
             catch (Exception e)
             {
-              return new CommandResult(e);
+                return new CommandResult(e);
             }
         }
 
-        
+
     }
 }

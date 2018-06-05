@@ -91,7 +91,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             var area = new AreaExperimento(this);
             for (int qtd = 0; qtd < QtdRepeticao; qtd++)
             {
-                var bloco = new Bloco("B" + qtd + 1);
+                var bloco = new Bloco("B" + (qtd + 1));
                 int count = 1;
                 foreach (var planta in _experimentoPlantas)
                 {

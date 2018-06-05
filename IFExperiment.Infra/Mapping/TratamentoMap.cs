@@ -9,7 +9,7 @@ namespace IFExperiment.Infra.Mapping
 
         public void Configure(EntityTypeBuilder<Tratamento> builder)
         {
-            builder.ToTable("Tramentos");
+            builder.ToTable("Tratamentos");
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
