@@ -28,6 +28,7 @@ namespace IFExperiment.Api
             services.AddTransient<ITratamentoRepository, TratamentoRepository>();
             services.AddTransient<TratamentoHandler, TratamentoHandler>();
             services.AddTransient<ExperimentoHandler, ExperimentoHandler>();
+            services.AddTransient<TratamentoOutputHandler, TratamentoOutputHandler>();
 
             services.AddSwaggerGen(x =>
             {

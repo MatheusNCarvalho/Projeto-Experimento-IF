@@ -26,20 +26,24 @@ namespace IFExperiment.Infra.Repositorio
         public IList<Tratamento> GetByRange(int skip = 0, int take = 25)
         {
             //AsNoTracking para não trazer o proxy na consulta
-            return _db.Tratamentos.OrderBy(x => x.Nome).Skip(skip).Take(take).AsNoTracking().ToList();
+            return _db.Tratamentos.OrderBy(x => x.Nome).Skip(skip).Take(take).AsNoTracking()
+                .Where(x => x.Excluido == ESimNao.Nao).ToList();
         }
 
         public Tratamento GetByIdAsNoTracking(Guid id)
         {
-            return _db.Tratamentos.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            return _db.Tratamentos.AsNoTracking().FirstOrDefault(x => x.Id == id && x.Excluido == ESimNao.Nao);
         }
 
         public Tratamento GetByIdTracking(Guid id)
         {
-            return _db.Tratamentos.Find(id);
+            var tratamento = _db.Tratamentos.Find(id);
+            if (tratamento.Excluido.Equals(ESimNao.Nao))
+                return tratamento;
+            return null;
         }
 
-       
+
 
         public void Save(Tratamento tratamento)
         {
@@ -61,8 +65,10 @@ namespace IFExperiment.Infra.Repositorio
 
         public void Delete(Guid id)
         {
-            var tratamento = GetById(id);
+            var tratamento = GetByIdTracking(id);
+            tratamento.Inativo();
             tratamento.AddExcluido(ESimNao.Sim);
+            tratamento.AddDataExclusao(DateTime.Now);
             Update(tratamento);
         }
     }

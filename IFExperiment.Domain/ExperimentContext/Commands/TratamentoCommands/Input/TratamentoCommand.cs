@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FluentValidator.Validation;
+﻿using FluentValidator.Validation;
 using IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Input;
 
 namespace IFExperiment.Domain.ExperimentContext.Commands.TratamentoCommands.Input

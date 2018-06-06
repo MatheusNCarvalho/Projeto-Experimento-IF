@@ -20,7 +20,7 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
             _tratamentoRepository = tratamentoRepository;
         }
 
-        public ICommandResult Handler(TratamentoCommand command)
+        public ICommandResult HandlerCreate(TratamentoCommand command)
         {
 
             try
@@ -54,6 +54,56 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                 return new CommandResult(e);
             }
 
+        }
+
+        public ICommandResult HandlerUpdate(TratamentoCommand command)
+        {
+            try
+            {
+                command.Validated();
+                AddNotifications(command.Notifications);
+                if (Invalid)
+                    return new CommandResult(false, "Por favor, corrija os campos abaixo", 400, Notifications);
+
+                //Criar VOs
+                var nome = new Nome(command.Nome);
+
+                //criar entidades
+                var tratamento = new Tratamento(nome);
+                tratamento.Ativo();
+                //validar entidades
+
+                tratamento.Validated();
+                tratamento.AddDataAlteracao(DateTime.Now);
+                AddNotifications(tratamento.Notifications);
+                if (Invalid)
+                    return new CommandResult(false, "Por favor, corrija os campos abaixo", 400, Notifications);
+
+                _tratamentoRepository.Update(tratamento);
+
+                return new CommandResult(true, "Atualizado com sucesso!", 200, new { Id = tratamento.Id, Nome = tratamento.Nome.ToString(), Status = tratamento.Status });
+
+
+            }
+            catch (Exception e)
+            {
+                return new CommandResult(e);
+            }
+        }
+
+        public ICommandResult HandlerDelete(Guid command)
+        {
+            try
+            {
+                _tratamentoRepository.Delete(command);
+
+                return new CommandResult(true, "Apagado com sucesso", 200, null);
+
+            }
+            catch (Exception e)
+            {
+                return new CommandResult(e);
+            }
         }
     }
 }

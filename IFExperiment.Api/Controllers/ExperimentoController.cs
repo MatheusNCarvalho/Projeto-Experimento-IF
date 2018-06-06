@@ -28,7 +28,7 @@ namespace IFExperiment.Api.Controllers
         [Route("v1/experimentos")]
         public ICommandResult Post([FromBody]CriarExperimentoCommand command)
         {
-            var result = _experimentoHandler.Handler(command);
+            var result = _experimentoHandler.HandlerCreate(command);
             return result;
         }
     }

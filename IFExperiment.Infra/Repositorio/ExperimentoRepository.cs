@@ -64,7 +64,7 @@ namespace IFExperiment.Infra.Repositorio
 
         public void Delete(Guid id)
         {
-            var experimento = GetById(id);
+            var experimento = GetByIdTracking(id);
             experimento.AddExcluido(ESimNao.Sim);
             Update(experimento);
         }

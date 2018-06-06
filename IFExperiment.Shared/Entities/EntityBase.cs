@@ -23,6 +23,15 @@ namespace IFExperiment.Shared.Entities
         {
             Excluido = status;
         }
+        public void AddDataAlteracao(DateTime dateTime)
+        {
+            DataAlteracao = dateTime;
+        }
+
+        public void AddDataExclusao(DateTime dateTime)
+        {
+            DataExclusao = dateTime;
+        }
 
         public virtual bool Validated()
         {

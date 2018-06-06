@@ -25,7 +25,7 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
             _tratamentoRepository = tratamentoRepository;
         }
 
-        public ICommandResult Handler(CriarExperimentoCommand command)
+        public ICommandResult HandlerCreate(CriarExperimentoCommand command)
         {
 
             try
@@ -45,7 +45,11 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
                 foreach (var tratamentoCommand in command.Tratamento)
                 {
                     var tratamento = _tratamentoRepository.GetByIdTracking(Guid.Parse(tratamentoCommand.Id));
-                    experimento.AddTratamento(new ExperimentoTramento(experimento, tratamento));
+                    if(tratamento != null)
+                    {
+                        experimento.AddTratamento(new ExperimentoTramento(experimento, tratamento));
+                    }
+                   
                 }
 
                 if (command.Status.Equals(ECommandStatus.Aberto))
@@ -74,6 +78,14 @@ namespace IFExperiment.Domain.ExperimentContext.Handlers
             }
         }
 
+        public ICommandResult HandlerUpdate(CriarExperimentoCommand command)
+        {
+            throw new NotImplementedException();
+        }
 
+        public ICommandResult HandlerDelete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
