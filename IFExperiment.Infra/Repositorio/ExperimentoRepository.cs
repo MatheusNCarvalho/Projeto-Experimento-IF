@@ -42,7 +42,7 @@ namespace IFExperiment.Infra.Repositorio
             return _db.Experimentos.Find(id);
         }
 
-      
+
 
         public void Save(Experimento experimento)
         {
@@ -58,6 +58,7 @@ namespace IFExperiment.Infra.Repositorio
 
         public void Update(Experimento experimento)
         {
+            experimento.AddDataAlteracao(DateTime.Now);
             _db.Entry(experimento).State = EntityState.Modified;
             _db.SaveChanges();
         }
@@ -65,6 +66,7 @@ namespace IFExperiment.Infra.Repositorio
         public void Delete(Guid id)
         {
             var experimento = GetByIdTracking(id);
+            experimento.AddDataExclusao(DateTime.Now);
             experimento.AddExcluido(ESimNao.Sim);
             Update(experimento);
         }

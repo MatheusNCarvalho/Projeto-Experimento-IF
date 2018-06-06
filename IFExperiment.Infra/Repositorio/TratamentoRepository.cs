@@ -59,6 +59,7 @@ namespace IFExperiment.Infra.Repositorio
 
         public void Update(Tratamento experimento)
         {
+            experimento.AddDataAlteracao(DateTime.Now);
             _db.Entry(experimento).State = EntityState.Modified;
             _db.SaveChanges();
         }

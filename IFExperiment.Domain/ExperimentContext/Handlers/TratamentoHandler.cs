@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentValidator;
-using IFExperiment.Domain.ExperimentContext.Commands.Outputs;
+using IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Outputs;
 using IFExperiment.Domain.ExperimentContext.Commands.TratamentoCommands.Input;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Domain.ExperimentContext.Repositorio;

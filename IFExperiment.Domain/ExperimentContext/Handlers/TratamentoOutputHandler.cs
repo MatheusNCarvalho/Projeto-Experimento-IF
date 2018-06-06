@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentValidator;
-using IFExperiment.Domain.ExperimentContext.Commands.Outputs;
+using IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Outputs;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Domain.ExperimentContext.Queries;
 using IFExperiment.Domain.ExperimentContext.Repositorio;

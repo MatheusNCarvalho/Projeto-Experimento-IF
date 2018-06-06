@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Input;
-using IFExperiment.Domain.ExperimentContext.Commands.Outputs;
+﻿using IFExperiment.Domain.ExperimentContext.Commands.ExperimentoCommands.Input;
 using IFExperiment.Domain.ExperimentContext.Handlers;
 using IFExperiment.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;

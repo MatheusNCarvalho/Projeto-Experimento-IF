@@ -1,6 +1,6 @@
 ﻿using IFExperiment.Shared.Commands;
 
-namespace IFExperiment.Domain.ExperimentContext.Commands.Outputs
+namespace IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Outputs
 {
     public class CommandResult : ICommandResult
     {

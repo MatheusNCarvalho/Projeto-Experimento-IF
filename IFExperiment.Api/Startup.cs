@@ -23,12 +23,18 @@ namespace IFExperiment.Api
 
             services.AddResponseCompression();
 
+            #region Injeção de Dependencia
             services.AddScoped<AppDataContext, AppDataContext>();
             services.AddTransient<IExperimentoRepository, ExperimentoRepository>();
             services.AddTransient<ITratamentoRepository, TratamentoRepository>();
             services.AddTransient<TratamentoHandler, TratamentoHandler>();
             services.AddTransient<ExperimentoHandler, ExperimentoHandler>();
             services.AddTransient<TratamentoOutputHandler, TratamentoOutputHandler>();
+
+
+            #endregion Injeção de Dependencia
+
+
 
             services.AddSwaggerGen(x =>
             {
