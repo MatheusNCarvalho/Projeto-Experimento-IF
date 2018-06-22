@@ -42,12 +42,10 @@ namespace IFExperiment.Api
                 x.SwaggerDoc("v1", new Info
                     {
                         Title = "Experimento", Version = "v1",
-                        Contact = new Contact 
+                        Contact = new Contact
                         {
                             Name="Marcel Silva / Matheus Neves",
-                            Url = "",
-                            Email = "marcel.msmelo@gmail.com / matheusnevesdecarvalho@gmail.com",
-                            
+                            Url = "marcel.msmelo@gmail.com / matheusnevesdecarvalho@gmail.com"
                         }
                     }
                 );

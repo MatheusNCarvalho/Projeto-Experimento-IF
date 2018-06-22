@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IFExperiment.Api.Controllers
 {
-
     public class ExperimentoController : BaseController
     {
 
@@ -46,12 +45,12 @@ namespace IFExperiment.Api.Controllers
         /// 
         [HttpPost]
         [Route("v1/experimentos")]
-        public async Task<IActionResult> Post(CriarExperimentoCommand command)
+        public async Task<IActionResult> Post([FromBody]CriarExperimentoCommand command)
         {
             var result = _experimentoHandler.HandlerCreate(command);
             return await Response(result, _experimentoHandler.Notifications);
         }
 
-
+       
     }
 }
