@@ -1,9 +1,11 @@
 ﻿
 
 using FluentValidator;
+using HibernatingRhinos.Profiler.Appender.EntityFramework;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Infra.Mapping;
 using IFExperiment.Shared;
+using IFExperiment.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Contexts
@@ -11,8 +13,7 @@ namespace IFExperiment.Infra.Contexts
 
     public class AppDataContext : DbContext
     {
-
-
+        
         public DbSet<Experimento> Experimentos { get; set; }
         public DbSet<BlocoTratamento> BlocoTratamentos { get; set; }
         public DbSet<Tratamento> Tratamentos { get; set; }
@@ -38,9 +39,11 @@ namespace IFExperiment.Infra.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            
             optionsBuilder
                 .UseNpgsql(Settings.ConnectionStringHomologacao);
+
+            base.OnConfiguring(optionsBuilder);
         }
 
     }

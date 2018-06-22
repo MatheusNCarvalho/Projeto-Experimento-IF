@@ -16,10 +16,11 @@ namespace IFExperiment.Infra.Mapping
 
             builder.Property(x => x.NomeBloco).HasColumnType("varchar(5)").IsRequired();
 
-            builder.HasOne(x => x.AreaExperimento)
+            builder.HasOne(x => x.Experimento)
                 .WithMany(x => x.Blocos)
-                .HasForeignKey(x => x.AreaExperimentoId)
+                .HasForeignKey(x => x.ExperimentoId)
                 .IsRequired();
+
         }
     }
 }

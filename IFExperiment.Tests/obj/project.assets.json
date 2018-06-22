@@ -14,6 +14,15 @@
           "lib/netstandard1.3/FluentValidator.dll": {}
         }
       },
+      "LinqKit/1.1.15": {
+        "type": "package",
+        "compile": {
+          "lib/net45/LinqKit.dll": {}
+        },
+        "runtime": {
+          "lib/net45/LinqKit.dll": {}
+        }
+      },
       "Microsoft.CodeCoverage/1.0.3": {
         "type": "package",
         "compile": {
@@ -1628,7 +1637,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "IFExperiment.Shared": "1.0.0"
+          "IFExperiment.Shared": "1.0.0",
+          "LinqKit": "1.1.15"
         },
         "compile": {
           "bin/placeholder/IFExperiment.Domain.dll": {}
@@ -1661,6 +1671,17 @@
         "fluentvalidator.2.0.4.nupkg.sha512",
         "fluentvalidator.nuspec",
         "lib/netstandard1.3/FluentValidator.dll"
+      ]
+    },
+    "LinqKit/1.1.15": {
+      "sha512": "hDQCBW9PwAudRrW3IQX78vRF/qH5h2ImdmI9khiTqBd5Yb39TR1oFu+bqcDoG9wLyEmPwAF1Dh/qlwC2plR+Jg==",
+      "type": "package",
+      "path": "linqkit/1.1.15",
+      "files": [
+        "lib/net45/LinqKit.dll",
+        "lib/net45/LinqKit.xml",
+        "linqkit.1.1.15.nupkg.sha512",
+        "linqkit.nuspec"
       ]
     },
     "Microsoft.CodeCoverage/1.0.3": {
@@ -5760,11 +5781,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
       "projectName": "IFExperiment.Tests",
-      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Tests\\IFExperiment.Tests.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5783,11 +5804,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj"
+            "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj"
             },
-            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
+            "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
             }
           }
         }
@@ -5826,5 +5847,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LinqKit 1.1.15' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "LinqKit",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }

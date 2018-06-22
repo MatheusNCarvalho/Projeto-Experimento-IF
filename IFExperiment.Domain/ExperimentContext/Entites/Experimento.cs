@@ -12,6 +12,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
     {
 
         private readonly IList<ExperimentoTramento> _experimentoPlantas;
+        private readonly IList<Bloco> _blocos;
 
         public Experimento(Nome nome, int qtdRepeticao)
         {
@@ -19,6 +20,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             DataInicio = DateTime.Now;
             QtdRepeticao = qtdRepeticao;
             _experimentoPlantas = new List<ExperimentoTramento>();
+            _blocos = new List<Bloco>();
 
             AddNotifications(new ValidationContract()
                 .Requires()
@@ -27,7 +29,11 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         }
 
         //Para o EF
-        protected Experimento(){}
+        protected Experimento()
+        {
+            _experimentoPlantas = new List<ExperimentoTramento>();
+            _blocos = new List<Bloco>();
+        }
 
         public Nome Nome { get; protected set; }
         public string Codigo { get; protected set; }
@@ -35,8 +41,9 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public DateTime DataConclusao { get; protected set; }
         public int QtdRepeticao { get; protected set; }
         public EExperimentoStatus Status { get; protected set; }
-        public virtual ICollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();
-        public virtual AreaExperimento AreaExperimento { get; protected set; }
+        public ICollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();
+        //public AreaExperimento AreaExperimento { get; protected set; }
+        public ICollection<Bloco> Blocos => _blocos.ToArray();
 
         public void AddTratamento(ExperimentoTramento tramento)
         {
@@ -48,17 +55,19 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             _experimentoPlantas.Remove(tramento);
         }
 
-        public void AddAreaExperimento(AreaExperimento area)
+        public void AddBloco(Bloco bloco)
         {
-            if (area == null)
-                AddNotification("AreaExperimento", "Area Experimento, é obrigatorio");
-
-            AreaExperimento = area;
+            _blocos.Add(bloco);
+        }
+        public void RemoveBloco(Bloco bloco)
+        {
+            _blocos.Remove(bloco);
         }
 
         public void Arquivar()
         {
             Status = EExperimentoStatus.Aberto;
+            Codigo = "0";
         }
 
         public void Gerar()
@@ -77,7 +86,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public void Cancelar()
         {
             Status = EExperimentoStatus.Cancelado;
-            AreaExperimento.Cancelar();
         }
 
         public void Concluir()
@@ -88,10 +96,10 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public void GerarAreaExperimento()
         {
-            var area = new AreaExperimento(this);
+           // var area = new AreaExperimento(this);
             for (int qtd = 0; qtd < QtdRepeticao; qtd++)
             {
-                var bloco = new Bloco("B" + (qtd + 1));
+                var bloco = new Bloco("B" + (qtd + 1), this);
                 int count = 1;
                 foreach (var planta in _experimentoPlantas)
                 {
@@ -106,9 +114,10 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
                     bloco.AddPlanta(blocoPlanta);
                     count++;
                 }
-                area.AddBloco(bloco);
+                AddBloco(bloco);
+                //area.AddBloco(bloco);
             }
-            AddAreaExperimento(area);
+           // AddAreaExperimento(area);
         }
 
 

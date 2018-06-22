@@ -39,8 +39,7 @@ namespace IFExperiment.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExperimentroId")
-                        .IsUnique();
+                    b.HasIndex("ExperimentroId");
 
                     b.ToTable("AreasExperimentos");
                 });
@@ -50,7 +49,7 @@ namespace IFExperiment.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AreaExperimentoId");
+                    b.Property<Guid?>("AreaExperimentoId");
 
                     b.Property<DateTime>("DataAlteracao");
 
@@ -60,6 +59,8 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<int>("Excluido");
 
+                    b.Property<Guid>("ExperimentoId");
+
                     b.Property<string>("NomeBloco")
                         .IsRequired()
                         .HasColumnType("varchar(5)");
@@ -67,6 +68,8 @@ namespace IFExperiment.Infra.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AreaExperimentoId");
+
+                    b.HasIndex("ExperimentoId");
 
                     b.ToTable("Blocos");
                 });
@@ -109,7 +112,6 @@ namespace IFExperiment.Infra.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Codigo")
-                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("DataAlteracao");
@@ -182,16 +184,20 @@ namespace IFExperiment.Infra.Migrations
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", b =>
                 {
                     b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Experimento", "Experimentro")
-                        .WithOne("AreaExperimento")
-                        .HasForeignKey("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", "ExperimentroId")
+                        .WithMany()
+                        .HasForeignKey("ExperimentroId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.Bloco", b =>
                 {
-                    b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", "AreaExperimento")
+                    b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento")
                         .WithMany("Blocos")
-                        .HasForeignKey("AreaExperimentoId")
+                        .HasForeignKey("AreaExperimentoId");
+
+                    b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Experimento", "Experimento")
+                        .WithMany("Blocos")
+                        .HasForeignKey("ExperimentoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

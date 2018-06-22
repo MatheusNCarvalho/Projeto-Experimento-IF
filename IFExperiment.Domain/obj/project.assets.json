@@ -14,6 +14,15 @@
           "lib/netstandard1.3/FluentValidator.dll": {}
         }
       },
+      "LinqKit/1.1.15": {
+        "type": "package",
+        "compile": {
+          "lib/net45/LinqKit.dll": {}
+        },
+        "runtime": {
+          "lib/net45/LinqKit.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -62,6 +71,17 @@
         "fluentvalidator.2.0.4.nupkg.sha512",
         "fluentvalidator.nuspec",
         "lib/netstandard1.3/FluentValidator.dll"
+      ]
+    },
+    "LinqKit/1.1.15": {
+      "sha512": "hDQCBW9PwAudRrW3IQX78vRF/qH5h2ImdmI9khiTqBd5Yb39TR1oFu+bqcDoG9wLyEmPwAF1Dh/qlwC2plR+Jg==",
+      "type": "package",
+      "path": "linqkit/1.1.15",
+      "files": [
+        "lib/net45/LinqKit.dll",
+        "lib/net45/LinqKit.xml",
+        "linqkit.1.1.15.nupkg.sha512",
+        "linqkit.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -214,6 +234,7 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "IFExperiment.Shared >= 1.0.0",
+      "LinqKit >= 1.1.15",
       "NETStandard.Library >= 2.0.1"
     ]
   },
@@ -224,11 +245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
       "projectName": "IFExperiment.Domain",
-      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Domain\\IFExperiment.Domain.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -247,8 +268,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
-              "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
+            "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj": {
+              "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj"
             }
           }
         }
@@ -262,6 +283,10 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
+          "LinqKit": {
+            "target": "Package",
+            "version": "[1.1.15, )"
+          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
@@ -276,5 +301,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'LinqKit 1.1.15' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "LinqKit",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

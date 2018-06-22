@@ -10,19 +10,25 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         private readonly IList<BlocoTratamento> _blocoPlantas;
 
-        public Bloco(string nome)
+        public Bloco(string nome, Experimento experimento)
         {
             NomeBloco = nome;
+            Experimento = experimento;
 
             _blocoPlantas = new List<BlocoTratamento>();
         }
         //Para o EF
-        protected Bloco() { }
+        protected Bloco()
+        {
+            _blocoPlantas = new List<BlocoTratamento>();
+        }
 
         public string NomeBloco { get; protected set; }
-        public Guid AreaExperimentoId { get; set; }
-        public virtual AreaExperimento AreaExperimento { get; protected set; }
-        public virtual  ICollection<BlocoTratamento> BlocoTratamentos => _blocoPlantas.ToArray();
+        public Guid ExperimentoId { get; protected set; }
+        public virtual Experimento Experimento { get; protected set; }
+        // public Guid AreaExperimentoId { get; set; }
+        //public virtual AreaExperimento AreaExperimento { get; protected set; }
+        public virtual ICollection<BlocoTratamento> BlocoTratamentos => _blocoPlantas.ToArray();
 
 
         public void AddPlanta(BlocoTratamento tratamento)

@@ -17,8 +17,6 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             Experimento = experimento;
             Tratamento = tratamento;
-            ExperimentoId = experimento.Id;
-            TratamentoId = tratamento.Id;
         }
 
         //Para o EF

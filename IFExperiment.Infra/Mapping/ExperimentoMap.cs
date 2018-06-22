@@ -24,7 +24,7 @@ namespace IFExperiment.Infra.Mapping
                     .IsRequired();
             });
 
-            builder.Property(x => x.Codigo).HasColumnType("varchar(100)").IsRequired();
+            builder.Property(x => x.Codigo).HasColumnType("varchar(100)");
 
         }
     }

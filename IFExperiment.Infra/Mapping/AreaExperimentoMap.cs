@@ -12,12 +12,6 @@ namespace IFExperiment.Infra.Mapping
             builder.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-
-            builder.HasOne(x => x.Experimentro)
-                .WithOne(x => x.AreaExperimento)
-                .HasForeignKey<AreaExperimento>(x => x.ExperimentroId)
-                .IsRequired();
-
         }
     }
 }

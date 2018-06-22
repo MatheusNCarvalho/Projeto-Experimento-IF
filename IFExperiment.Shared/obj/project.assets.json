@@ -206,11 +206,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj",
       "projectName": "IFExperiment.Shared",
-      "projectPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj",
+      "projectPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\IFExperiment.Shared.csproj",
       "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus\\workspace\\Projeto-Experimento-IF\\IFExperiment.Shared\\obj\\",
+      "outputPath": "C:\\Users\\Matheus\\workspace\\Producao\\Projeto-Experimento-IF\\IFExperiment.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -22,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="HibernatingRhinos.Profiler.Appender">
+      <HintPath>..\..\..\..\Downloads\EntityFramework.Profiler-v5.0-Build-5023\Profiler\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\..\..\..\.nuget\packages\microsoft.aspnetcore.mvc.core\1.0.4\lib\netstandard1.6\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ComponentModel.DataAnnotations.dll</HintPath>
     </Reference>

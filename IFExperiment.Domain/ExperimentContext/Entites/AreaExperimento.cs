@@ -18,13 +18,17 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         }
 
         //Para o EF
-        protected AreaExperimento() { }
+        protected AreaExperimento()
+        {
+            _blocos = new List<Bloco>();
+        }
        
 
-        public Guid ExperimentroId { get; protected set; }
-        public virtual Experimento Experimentro { get; protected set; }
+       
         public virtual ICollection<Bloco> Blocos => _blocos.ToArray();
         public EStatus Status { get; protected set; }
+        public Guid ExperimentroId { get; protected set; }
+        public Experimento Experimentro { get; protected set; }
 
         public void AddBloco(Bloco bloco)
         {
