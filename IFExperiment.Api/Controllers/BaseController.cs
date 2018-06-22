@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidator;
+using IFExperiment.Domain.ExperimentContext.Commands.Input;
 using IFExperiment.Infra.Transacao;
 using IFExperiment.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IFExperiment.Api.Controllers
 {
-    public class BaseController : Controller
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(typeof(Notification), 400)]
+    [ProducesResponseType(typeof(void), 400)]
+    [ProducesResponseType(typeof(void), 404)]
+    [ProducesResponseType(typeof(void), 409)]
+    public  class BaseController : Controller
     {
         private readonly IUow _uow;
 
@@ -18,6 +24,7 @@ namespace IFExperiment.Api.Controllers
             _uow = uow;
         }
 
+  
         public async Task<IActionResult> Response(object result, IEnumerable<Notification> notifications)
         {
             if (!notifications.Any())
@@ -105,5 +112,6 @@ namespace IFExperiment.Api.Controllers
             }
         }
 
+   
     }
 }
