@@ -1,9 +1,11 @@
 ﻿using IFExperiment.Domain.ExperimentContext.Enums;
 using IFExperiment.Domain.ExperimentContext.ValueObjects;
 using IFExperiment.Shared.Entities;
+using System.Runtime.Serialization;
 
 namespace IFExperiment.Domain.ExperimentContext.Entites
 {
+    [DataContract]
     public class Tratamento : EntityBase
     {
         public Tratamento(Nome nome)
@@ -13,29 +15,18 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         //Para o EF
         protected Tratamento() { }
-      
 
+        [DataMember]
         public Nome Nome { get; protected set; }
-        public EStatus Status { get; protected set; }
 
-
-        public void Ativo()
+        public void Update(Nome nome)
         {
-            Status = EStatus.Ativo;
-        }
-
-        public void Inativo()
-        {
-            Status = EStatus.Inativo;
+            Nome = nome;
         }
 
         public override bool Validated()
         {
-            if (Status.Equals(null))
-                AddNotification("Status", "Status deve ser selecionado");
-
             AddNotifications(Nome.Notifications);
-
             return Valid;
         }
     }

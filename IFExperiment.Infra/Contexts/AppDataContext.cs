@@ -18,8 +18,9 @@ namespace IFExperiment.Infra.Contexts
         public DbSet<BlocoTratamento> BlocoTratamentos { get; set; }
         public DbSet<Tratamento> Tratamentos { get; set; }
         public DbSet<Bloco> Blocos { get; set; }
-        public DbSet<AreaExperimento> AreaExperimentos { get; set; }
+        //public DbSet<AreaExperimento> AreaExperimentos { get; set; }
         public DbSet<ExperimentoTramento> ExperimentoTramentos { get; set; }
+        public DbSet<LogEntidade> LogEntidades { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,7 +32,7 @@ namespace IFExperiment.Infra.Contexts
             modelBuilder.ApplyConfiguration(new TratamentoMap());
             modelBuilder.ApplyConfiguration(new BlocoTratamentoMap());
             modelBuilder.ApplyConfiguration(new BlocoMap());
-            modelBuilder.ApplyConfiguration(new AreaExperimentoMap());
+            //modelBuilder.ApplyConfiguration(new AreaExperimentoMap());
             modelBuilder.ApplyConfiguration(new ExperimentoTratamentoMap());
 
             base.OnModelCreating(modelBuilder);

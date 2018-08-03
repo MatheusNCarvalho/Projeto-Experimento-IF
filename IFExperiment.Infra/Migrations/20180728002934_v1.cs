@@ -17,8 +17,8 @@ namespace IFExperiment.Infra.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
                     Nome = table.Column<string>(type: "varchar(255)", nullable: false),
                     Codigo = table.Column<string>(type: "varchar(100)", nullable: true),
@@ -33,14 +33,35 @@ namespace IFExperiment.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LogEntidades",
+                schema: "public",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    DataCadastrado = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
+                    Excluido = table.Column<int>(nullable: false),
+                    EntidadeAnterior = table.Column<string>(nullable: true),
+                    EntidadeNova = table.Column<string>(nullable: true),
+                    Usuario = table.Column<string>(nullable: true),
+                    NomeClass = table.Column<string>(nullable: true),
+                    Acao = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogEntidades", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tratamentos",
                 schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
                     Nome = table.Column<string>(type: "varchar(255)", nullable: false),
                     Status = table.Column<int>(nullable: false)
@@ -51,24 +72,24 @@ namespace IFExperiment.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AreasExperimentos",
+                name: "Blocos",
                 schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    ExperimentroId = table.Column<Guid>(nullable: false)
+                    NomeBloco = table.Column<string>(type: "varchar(5)", nullable: false),
+                    ExperimentoId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AreasExperimentos", x => x.Id);
+                    table.PrimaryKey("PK_Blocos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AreasExperimentos_Experimentos_ExperimentroId",
-                        column: x => x.ExperimentroId,
+                        name: "FK_Blocos_Experimentos_ExperimentoId",
+                        column: x => x.ExperimentoId,
                         principalSchema: "public",
                         principalTable: "Experimentos",
                         principalColumn: "Id",
@@ -82,8 +103,8 @@ namespace IFExperiment.Infra.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
                     ExperimentoId = table.Column<Guid>(nullable: false),
                     TratamentoId = table.Column<Guid>(nullable: false),
@@ -109,47 +130,14 @@ namespace IFExperiment.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Blocos",
-                schema: "public",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
-                    Excluido = table.Column<int>(nullable: false),
-                    NomeBloco = table.Column<string>(type: "varchar(5)", nullable: false),
-                    ExperimentoId = table.Column<Guid>(nullable: false),
-                    AreaExperimentoId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Blocos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Blocos_AreasExperimentos_AreaExperimentoId",
-                        column: x => x.AreaExperimentoId,
-                        principalSchema: "public",
-                        principalTable: "AreasExperimentos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Blocos_Experimentos_ExperimentoId",
-                        column: x => x.ExperimentoId,
-                        principalSchema: "public",
-                        principalTable: "Experimentos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BlocosTratamentos",
                 schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: false),
-                    DataExclusao = table.Column<DateTime>(nullable: false),
+                    DataAlteracao = table.Column<DateTime>(nullable: true),
+                    DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
                     NomeParcela = table.Column<string>(type: "varchar(5)", nullable: false),
                     TratamentoId = table.Column<Guid>(nullable: false),
@@ -174,18 +162,6 @@ namespace IFExperiment.Infra.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AreasExperimentos_ExperimentroId",
-                schema: "public",
-                table: "AreasExperimentos",
-                column: "ExperimentroId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Blocos_AreaExperimentoId",
-                schema: "public",
-                table: "Blocos",
-                column: "AreaExperimentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Blocos_ExperimentoId",
@@ -223,15 +199,15 @@ namespace IFExperiment.Infra.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
+                name: "LogEntidades",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "Blocos",
                 schema: "public");
 
             migrationBuilder.DropTable(
                 name: "Tratamentos",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "AreasExperimentos",
                 schema: "public");
 
             migrationBuilder.DropTable(

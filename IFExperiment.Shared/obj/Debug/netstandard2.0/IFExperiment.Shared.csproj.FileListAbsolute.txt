@@ -7,3 +7,8 @@ C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\o
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.AssemblyInfo.cs
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.dll
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.pdb
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\Newtonsoft.Json.xml
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\obj\Debug\netstandard2.0\IFExperiment.Shared.csproj.CopyComplete
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\Dapper.Contrib.dll
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Shared\bin\Debug\netstandard2.0\Dapper.Contrib.xml

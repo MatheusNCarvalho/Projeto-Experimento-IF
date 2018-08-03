@@ -9,6 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IFExperiment.Api.Controllers
 {
+
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(typeof(Notification), 400)]
+    [ProducesResponseType(typeof(object), 400)]
+    [ProducesResponseType(typeof(void), 404)]
+    [ProducesResponseType(typeof(void), 409)]
     public class BaseController : Controller
     {
         private readonly IUow _uow;
@@ -37,7 +43,7 @@ namespace IFExperiment.Api.Controllers
                     return BadRequest(new
                     {
                         sucess = false,
-                        errors = e
+                        errors = new { causa = e}
                     });
                 }
             }

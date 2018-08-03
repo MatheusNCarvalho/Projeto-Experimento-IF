@@ -9,12 +9,14 @@ namespace IFExperiment.Tests.Entities
     [TestClass]
     public class ExperimentoTests
     {
+        
+
         private Experimento _experimento;
         private readonly Nome _nome;
         private readonly Nome _tomate;
         private readonly Nome _cebola;
         private readonly Nome _cenoura;
-
+        
         public ExperimentoTests()
         {
             _nome = new Nome("Experimento tomate");
@@ -43,6 +45,7 @@ namespace IFExperiment.Tests.Entities
         {
             _experimento.Gerar();
             Assert.AreEqual(true, _experimento.Validated());
+        
         }
 
         [TestMethod]

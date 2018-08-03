@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using IFExperiment.Api.Controllers;
 using IFExperiment.Domain.ExperimentContext.Commands.Handlers;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Infra.Contexts;
@@ -20,7 +22,7 @@ namespace IFExperiment.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc();
+            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); });
             services.AddCors();
             services.AddResponseCompression();
 
@@ -45,7 +47,8 @@ namespace IFExperiment.Api
                         Contact = new Contact
                         {
                             Name="Marcel Silva / Matheus Neves",
-                            Url = "marcel.msmelo@gmail.com / matheusnevesdecarvalho@gmail.com"
+                            Url = String.Empty,
+                            Email = "marcel.msmelo@gmail.com;matheusnevesdecarvalho@gmail.com"
                         }
                     }
                 );

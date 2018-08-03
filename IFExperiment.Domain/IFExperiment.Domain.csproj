@@ -12,4 +12,10 @@
     <ProjectReference Include="..\IFExperiment.Shared\IFExperiment.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\..\..\.nuget\packages\dapper.contrib\1.50.5\lib\netstandard2.0\Dapper.Contrib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

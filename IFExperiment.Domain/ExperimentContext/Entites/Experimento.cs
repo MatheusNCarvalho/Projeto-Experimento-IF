@@ -38,7 +38,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         public Nome Nome { get; protected set; }
         public string Codigo { get; protected set; }
         public DateTime DataInicio { get; protected set; }
-        public DateTime DataConclusao { get; protected set; }
+        public DateTime? DataConclusao { get; protected set; }
         public int QtdRepeticao { get; protected set; }
         public EExperimentoStatus Status { get; protected set; }
         public ICollection<ExperimentoTramento> ExperimentoTramentos => _experimentoPlantas.ToArray();

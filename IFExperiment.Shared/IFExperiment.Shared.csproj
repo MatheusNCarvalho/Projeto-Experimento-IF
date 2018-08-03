@@ -8,4 +8,13 @@
     <PackageReference Include="FluentValidator" Version="2.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\..\..\.nuget\packages\dapper.contrib\1.50.5\lib\netstandard2.0\Dapper.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\10.0.1\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

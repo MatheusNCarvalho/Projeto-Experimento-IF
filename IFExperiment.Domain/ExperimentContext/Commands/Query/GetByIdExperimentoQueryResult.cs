@@ -13,27 +13,35 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Query
             ExperimentoTramentos = new List<GetTratamentoQueryResult>();
             Blocos = new List<BlocoQueryResult>();
         }
-        public Guid Id { get; set; } 
-        public string Nome { get;  set; }
-        public string Codigo { get;  set; }
-        public DateTime DataInicio { get;  set; }
-        public DateTime DataConclusao { get;  set; }
-        public int QtdRepeticao { get;  set; }
-        public string Status { get;  set; }
-        public IEnumerable<GetTratamentoQueryResult> ExperimentoTramentos { get; set ;}
-        public IEnumerable<BlocoQueryResult> Blocos { get; set ;}
-        
+
+        public Guid Id { get; set; }
+        public string Nome { get; set; }
+        public string Codigo { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime? DataConclusao { get; set; }
+        public int QtdRepeticao { get; set; }
+        public string Status { get; set; }
+        public IEnumerable<GetTratamentoQueryResult> ExperimentoTramentos { get; set; }
+        public IEnumerable<BlocoQueryResult> Blocos { get; set; }
+
     }
 
     public class AreaExperimentoQueryResult : ICommandResult
     {
         public Guid Id { get; set; }
-        public string Status { get;  set; }
+        public string Status { get; set; }
     }
 
     public class BlocoQueryResult : ICommandResult
     {
         public Guid Id { get; set; }
         public string NomeBloco { get; set; }
+        public IEnumerable<BlocoTratamentoQueryResult> BlocoTratamentoQueryResults { get; set; }
+    }
+
+    public class BlocoTratamentoQueryResult : ICommandResult
+    {
+        public string NomeParcela { get; set; }
+        public string NomeTratamento { get; set; }
     }
 }

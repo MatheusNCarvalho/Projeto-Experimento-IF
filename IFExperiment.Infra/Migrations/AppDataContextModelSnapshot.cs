@@ -20,42 +20,16 @@ namespace IFExperiment.Infra.Migrations
                 .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DataAlteracao");
-
-                    b.Property<DateTime>("DataCadastrado");
-
-                    b.Property<DateTime>("DataExclusao");
-
-                    b.Property<int>("Excluido");
-
-                    b.Property<Guid>("ExperimentroId");
-
-                    b.Property<int>("Status");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExperimentroId");
-
-                    b.ToTable("AreasExperimentos");
-                });
-
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.Bloco", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AreaExperimentoId");
-
-                    b.Property<DateTime>("DataAlteracao");
+                    b.Property<DateTime?>("DataAlteracao");
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataExclusao");
+                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<int>("Excluido");
 
@@ -66,8 +40,6 @@ namespace IFExperiment.Infra.Migrations
                         .HasColumnType("varchar(5)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AreaExperimentoId");
 
                     b.HasIndex("ExperimentoId");
 
@@ -81,13 +53,13 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<Guid>("BlocoId");
 
-                    b.Property<DateTime>("DataAlteracao");
+                    b.Property<DateTime?>("DataAlteracao");
 
                     b.Property<DateTime>("DataAvaliacao");
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataExclusao");
+                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<int>("Excluido");
 
@@ -114,13 +86,13 @@ namespace IFExperiment.Infra.Migrations
                     b.Property<string>("Codigo")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<DateTime>("DataAlteracao");
+                    b.Property<DateTime?>("DataAlteracao");
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataConclusao");
+                    b.Property<DateTime?>("DataConclusao");
 
-                    b.Property<DateTime>("DataExclusao");
+                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<DateTime>("DataInicio");
 
@@ -141,11 +113,11 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<Guid>("TratamentoId");
 
-                    b.Property<DateTime>("DataAlteracao");
+                    b.Property<DateTime?>("DataAlteracao");
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataExclusao");
+                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<int>("Excluido");
 
@@ -161,40 +133,54 @@ namespace IFExperiment.Infra.Migrations
                     b.ToTable("ExperimentosTratamentos");
                 });
 
+            modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.LogEntidade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Acao");
+
+                    b.Property<DateTime?>("DataAlteracao");
+
+                    b.Property<DateTime>("DataCadastrado");
+
+                    b.Property<DateTime?>("DataExclusao");
+
+                    b.Property<string>("EntidadeAnterior");
+
+                    b.Property<string>("EntidadeNova");
+
+                    b.Property<int>("Excluido");
+
+                    b.Property<string>("NomeClass");
+
+                    b.Property<string>("Usuario");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogEntidades");
+                });
+
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.Tratamento", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DataAlteracao");
+                    b.Property<DateTime?>("DataAlteracao");
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataExclusao");
+                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<int>("Excluido");
-
-                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tratamentos");
                 });
 
-            modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento", b =>
-                {
-                    b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Experimento", "Experimentro")
-                        .WithMany()
-                        .HasForeignKey("ExperimentroId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("IFExperiment.Domain.ExperimentContext.Entites.Bloco", b =>
                 {
-                    b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.AreaExperimento")
-                        .WithMany("Blocos")
-                        .HasForeignKey("AreaExperimentoId");
-
                     b.HasOne("IFExperiment.Domain.ExperimentContext.Entites.Experimento", "Experimento")
                         .WithMany("Blocos")
                         .HasForeignKey("ExperimentoId")

@@ -2,29 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using HibernatingRhinos.Profiler.Appender.EntityFramework;
 using IFExperiment.Domain.ExperimentContext.Commands.Query;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Infra.Contexts;
-using IFExperiment.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Repositorio
 {
-    public class ExperimentoRepository : IExperimentoRepository
+    public class ExperimentoRepository : Repositorio<Experimento>, IExperimentoRepository
     {
 
         private readonly AppDataContext _db;
 
-        public ExperimentoRepository(AppDataContext db)
+        public ExperimentoRepository(AppDataContext db) : base(db)
         {
             _db = db;
-        }
-
-        public void Dispose()
-        {
-            _db.Dispose();
         }
 
         public IList<GetExperimentoQueryResult> GetByRange(Expression<Func<Experimento, bool>> expression, Func<Experimento, object> orderBy, Boolean orderByDesc, int page = 1, int itemPerPage = 10)
@@ -88,13 +81,18 @@ namespace IFExperiment.Infra.Repositorio
                         .Select(tramento => new GetTratamentoQueryResult
                         {
                             Id = tramento.TratamentoId,
-                            Name = tramento.Tratamento.Nome.ToString(),
+                            Nome = tramento.Tratamento.Nome.ToString(),
                             Excluido = tramento.Tratamento.Excluido
                         }),
                     Blocos = x.Blocos.Select(bloco => new BlocoQueryResult
                     {
                         Id = bloco.Id,
-                        NomeBloco = bloco.NomeBloco
+                        NomeBloco = bloco.NomeBloco,
+                        BlocoTratamentoQueryResults = bloco.BlocoTratamentos.Select(blocoTratamento => new BlocoTratamentoQueryResult
+                        {
+                            NomeParcela = blocoTratamento.NomeParcela,
+                            NomeTratamento = blocoTratamento.Tratamento.Nome.ToString()
+                        })
                     })
 
                 })
@@ -103,63 +101,5 @@ namespace IFExperiment.Infra.Repositorio
         }
 
 
-        public List<GetTratamentoQueryResult> teste(IEnumerable<ExperimentoTramento> list)
-        {
-            IList<GetTratamentoQueryResult> listaTratamento = new List<GetTratamentoQueryResult>();
-
-            foreach (var experimentoTramento in list)
-            {
-                listaTratamento.Add(new GetTratamentoQueryResult
-                {
-                    Id = experimentoTramento.TratamentoId,
-                    Name = experimentoTramento.Tratamento.Nome.ToString(),
-                    Excluido = experimentoTramento.Tratamento.Excluido
-                });
-            }
-
-            return (List<GetTratamentoQueryResult>)listaTratamento;
-        }
-
-        public Experimento GetByIdTracking(Guid id)
-        {
-
-            return _db.Experimentos.Find(id);
-
-        }
-
-
-
-        public void Save(Experimento experimento)
-        {
-            _db.Experimentos.Add(experimento);
-
-        }
-
-        public void Save(IList<Experimento> experimentos)
-        {
-            _db.Experimentos.AddRange(experimentos);
-
-        }
-
-        public void Update(Experimento experimento)
-        {
-            experimento.AddDataAlteracao(DateTime.Now);
-            _db.Entry(experimento).State = EntityState.Modified;
-
-        }
-
-        public void Delete(Guid id)
-        {
-            var experimento = GetByIdTracking(id);
-            experimento.AddDataExclusao(DateTime.Now);
-            experimento.AddExcluido(ESimNao.Sim);
-            Update(experimento);
-        }
-
-        public static void GravaLog(string sql)
-        {
-            Console.WriteLine("Comando SQL: " + sql);
-            Console.ReadLine();
-        }
     }
 }

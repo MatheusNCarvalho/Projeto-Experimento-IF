@@ -7,7 +7,7 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Query
     public class GetTratamentoQueryResult : ICommandResult
     {
         public Guid Id { get;  set; }
-        public string Name { get;  set; }
+        public string Nome { get;  set; }
         public ESimNao Excluido { get;  set; }
 
     }

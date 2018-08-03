@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentValidator;
-using IFExperiment.Domain.ExperimentContext.Commands.BaseCommand.Outputs;
 using IFExperiment.Domain.ExperimentContext.Commands.Input;
+using IFExperiment.Domain.ExperimentContext.Commands.Output;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
 using IFExperiment.Domain.ExperimentContext.ValueObjects;
@@ -35,7 +35,6 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
 
                 //criar entidades
                 var tratamento = new Tratamento(nome);
-                tratamento.Ativo();
                 //validar entidades
 
                 tratamento.Validated();
@@ -45,13 +44,13 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
 
                 _tratamentoRepository.Save(tratamento);
 
-                return new CommandResult(new { Id = tratamento.Id, Nome = tratamento.Nome.ToString(), Status = tratamento.Status });
+                return new CommandResult(new { Id = tratamento.Id, Nome = tratamento.Nome.ToString() });
 
 
             }
             catch (Exception e)
             {
-                return new CommandResult(new {error= e});
+                return new CommandResult(new { error = e });
             }
 
         }
@@ -69,25 +68,24 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
                 var nome = new Nome(command.Nome);
 
                 //criar entidades
-                var tratamento = new Tratamento(nome);
-                tratamento.Ativo();
-                //validar entidades
+                var tratamento = _tratamentoRepository.GetByIdTracking(Guid.Parse(command.Id));
+                tratamento.Update(nome);
 
+                //validar entidades
                 tratamento.Validated();
-                tratamento.AddDataAlteracao(DateTime.Now);
                 AddNotifications(tratamento.Notifications);
                 if (Invalid)
                     return null;
 
                 _tratamentoRepository.Update(tratamento);
 
-                return new CommandResult(new { Id = tratamento.Id, Nome = tratamento.Nome.ToString(), Status = tratamento.Status });
+                return new CommandResult(new { Id = tratamento.Id, Nome = tratamento.Nome.ToString() });
 
 
             }
             catch (Exception e)
             {
-                return new CommandResult(new {error = e});
+                return new CommandResult(new { error = e });
             }
         }
 
@@ -97,12 +95,12 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
             {
                 _tratamentoRepository.Delete(command);
 
-                return new CommandResult(new {messagem = "Apagado com sucesso"});
+                return new CommandResult(new { messagem = "Apagado com sucesso" });
 
             }
             catch (Exception e)
             {
-                return new CommandResult(new {error= e});
+                return new CommandResult(new { error = e });
             }
         }
     }

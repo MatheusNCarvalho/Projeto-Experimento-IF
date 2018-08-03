@@ -6,10 +6,11 @@ namespace IFExperiment.Shared.Entities
 {
     public abstract class EntityBase : Notifiable
     {
+        
         public Guid Id { get; protected set; }
         public DateTime DataCadastrado { get; protected set; }
-        public DateTime DataAlteracao { get; protected set; }
-        public DateTime DataExclusao { get; protected set; }
+        public DateTime? DataAlteracao { get; protected set; }
+        public DateTime? DataExclusao { get; protected set; }
         public ESimNao Excluido { get; protected set; }
 
         protected EntityBase()
@@ -19,20 +20,22 @@ namespace IFExperiment.Shared.Entities
             Excluido = ESimNao.Nao;
         }
 
-        public void AddExcluido(ESimNao status)
+        public void AddId(Guid id)
         {
-            Excluido = status;
+            Id = id;
         }
-        public void AddDataAlteracao(DateTime dateTime)
+        public void AddExcluido()
         {
-            DataAlteracao = dateTime;
+            Excluido = ESimNao.Sim;
         }
-
-        public void AddDataExclusao(DateTime dateTime)
+        public void AddDataAlteracao()
         {
-            DataExclusao = dateTime;
+            DataAlteracao = DateTime.Now;
         }
-
+        public void AddDataExclusao()
+        {
+            DataExclusao = DateTime.Now;
+        }
         public virtual bool Validated()
         {
            return  Valid;
