@@ -1,0 +1,45 @@
+<div class="uk-background-secondary uk-light">
+  <div class="uk-container">
+    <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="#">
+          <img src="assets/img/logo.png" alt="">
+          <!-- <span class="uk-icon uk-margin-small-right" uk-icon="icon: icon-color-light; ratio: 0.15"></span> -->
+        </a>
+        <ul class="uk-navbar-nav">
+          <li routerLinkActive="uk-active" ><a [routerLink]="['/']" >Home</a></li>
+          <li routerLinkActive="uk-active">
+            <a >Administração</a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li routerLinkActive="uk-active" ><a [routerLink]="['/tratamentos']" >Tratamentos</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="/account/pets">Meus Pets</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a href="/cart">
+              <span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>
+            </a>
+          </li>
+          <li>
+            <a href="/account">
+              <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
+            </a>
+          </li>
+          <li>
+            <a href="/login">
+              <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
