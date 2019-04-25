@@ -31,19 +31,14 @@ namespace IFExperiment.Api.Controllers
                 try
                 {
                     _uow.Commit();
-                    return Ok(new
-                    {
-                        sucess = true,
-                        data = result
-                    });
+                    return Ok(result);
                 }
                 catch (Exception e)
                 {
                     //Logar o erro (Elmah)
-                    return BadRequest(new
+                    return StatusCode(500, new
                     {
-                        sucess = false,
-                        errors = new { causa = e}
+                        errors = new { causa = e }
                     });
                 }
             }
@@ -51,7 +46,6 @@ namespace IFExperiment.Api.Controllers
             {
                 return BadRequest(new
                 {
-                    sucess = false,
                     errors = notifications
                 });
             }

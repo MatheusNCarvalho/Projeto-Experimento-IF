@@ -17,6 +17,7 @@ namespace IFExperiment.Domain.ExperimentContext.Filter
             Expression<Func<Tratamento, bool>> expression = c => true;
 
             expression = expression.And(x => x.Excluido == ESimNao.Nao);
+
             if (!string.IsNullOrEmpty(Nome))
                 expression = expression.And(x => x.Nome.Valor == Nome);
 
@@ -24,8 +25,6 @@ namespace IFExperiment.Domain.ExperimentContext.Filter
             {
                // expression = expression.And(x => x.DataCadastrado >= DataInicio && x.DataCadastrado <= DataFim);
             }
-               
-
 
             return expression;
         }

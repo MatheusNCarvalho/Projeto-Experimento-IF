@@ -13,6 +13,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         private readonly IList<ExperimentoTramento> _experimentoPlantas;
         private readonly IList<Bloco> _blocos;
+        private Random _getrandom = new Random();
 
         public Experimento(Nome nome, int qtdRepeticao)
         {
@@ -96,7 +97,7 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
 
         public void GerarAreaExperimento()
         {
-           // var area = new AreaExperimento(this);
+            // var area = new AreaExperimento(this);
             for (int qtd = 0; qtd < QtdRepeticao; qtd++)
             {
                 var bloco = new Bloco("B" + (qtd + 1), this);
@@ -105,19 +106,21 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
                 {
                     //Aqui aonde faz o sorteio
                     int seq = GerarSequencia(_experimentoPlantas.Count);
+                    //Nesse laço verifica se com o sorteio não há um tratamento já na lista
                     while (checarSequencia(seq, bloco))
                     {
                         seq = GerarSequencia(_experimentoPlantas.Count);
                     }
 
-                    var blocoPlanta = new BlocoTratamento("P" + seq, bloco, planta.Tratamento);
+                    var blocoPlanta = new BlocoTratamento("P" + seq, bloco, _experimentoPlantas[seq - 1].Tratamento, count);
                     bloco.AddPlanta(blocoPlanta);
                     count++;
                 }
                 AddBloco(bloco);
+                ReiniciarSorteio();
                 //area.AddBloco(bloco);
             }
-           // AddAreaExperimento(area);
+            // AddAreaExperimento(area);
         }
 
 
@@ -125,11 +128,18 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
         {
             return bloco.BlocoTratamentos.Any(item => item.NomeParcela.Equals("P" + valor));
         }
+
+        private void ReiniciarSorteio()
+        {
+            _getrandom = new Random();
+        }
+
         private int GerarSequencia(int tamnhoArray)
         {
-            Random rdn = new Random();
-            var valor = rdn.Next(1, tamnhoArray + 1);
-            return valor;
+            lock (_getrandom) // synchronize
+            {
+                return _getrandom.Next(1, tamnhoArray + 1);
+            }
         }
 
         public override bool Validated()

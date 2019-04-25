@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Repositorio
 {
-    public class ExperimentoRepository : Repositorio<Experimento>, IExperimentoRepository
+    public class ExperimentoRepository : Repositorio<Experimento, GetTratamentoQueryResult>, IExperimentoRepository
     {
 
         private readonly AppDataContext _db;
@@ -20,48 +20,6 @@ namespace IFExperiment.Infra.Repositorio
             _db = db;
         }
 
-        public IList<GetExperimentoQueryResult> GetByRange(Expression<Func<Experimento, bool>> expression, Func<Experimento, object> orderBy, Boolean orderByDesc, int page = 1, int itemPerPage = 10)
-        {
-            //AsNoTracking para não trazer o proxy na consulta
-            if (orderByDesc)
-            {
-                var result = _db.Experimentos
-                    .Where(expression).OrderByDescending(orderBy)
-                    .Skip((page - 1) * itemPerPage)
-                    .Take(itemPerPage).AsQueryable()
-                    .Select(x => new GetExperimentoQueryResult()
-                    {
-                        Id = x.Id,
-                        Nome = x.Nome.ToString(),
-                        DataInicio = x.DataInicio.ToString("MM/dd/yyyy"),
-                        QtdRepeticao = x.QtdRepeticao,
-                        Status = x.Status.ToString()
-
-                    })
-                    .AsNoTracking()
-                    .ToList();
-                return result;
-            }
-            else
-            {
-                var result = _db.Experimentos
-                    .Where(expression).OrderBy(orderBy)
-                    .Skip((page - 1) * itemPerPage)
-                    .Take(itemPerPage).AsQueryable()
-                    .Select(x => new GetExperimentoQueryResult()
-                    {
-                        Id = x.Id,
-                        Nome = x.Nome.ToString(),
-                        DataInicio = x.DataInicio.ToString("MM/dd/yyyy"),
-                        QtdRepeticao = x.QtdRepeticao,
-                        Status = x.Status.ToString()
-
-                    })
-                    .AsNoTracking()
-                    .ToList();
-                return result;
-            }
-        }
 
         public GetByIdExperimentoQueryResult GetByIdAsNoTracking(Guid id)
         {
@@ -88,7 +46,7 @@ namespace IFExperiment.Infra.Repositorio
                     {
                         Id = bloco.Id,
                         NomeBloco = bloco.NomeBloco,
-                        BlocoTratamentoQueryResults = bloco.BlocoTratamentos.Select(blocoTratamento => new BlocoTratamentoQueryResult
+                        BlocoTratamentoQueryResults = bloco.BlocoTratamentos.OrderBy(xs => xs.OrdemSequencia).Select(blocoTratamento => new BlocoTratamentoQueryResult
                         {
                             NomeParcela = blocoTratamento.NomeParcela,
                             NomeTratamento = blocoTratamento.Tratamento.Nome.ToString()
@@ -100,6 +58,48 @@ namespace IFExperiment.Infra.Repositorio
                 .FirstOrDefault(x => x.Id == id);
         }
 
+        //public IList<GetExperimentoQueryResult> GetByRange(Expression<Func<Experimento, bool>> expression, Func<Experimento, object> orderBy, Boolean orderByDesc, int page = 1, int itemPerPage = 10)
+        //{
+        //    //AsNoTracking para não trazer o proxy na consulta
+        //    if (orderByDesc)
+        //    {
+        //        var result = _db.Experimentos
+        //            .Where(expression).OrderByDescending(orderBy)
+        //            .Skip((page - 1) * itemPerPage)
+        //            .Take(itemPerPage).AsQueryable()
+        //            .Select(x => new GetExperimentoQueryResult()
+        //            {
+        //                Id = x.Id,
+        //                Nome = x.Nome.ToString(),
+        //                DataInicio = x.DataInicio.ToString("MM/dd/yyyy"),
+        //                QtdRepeticao = x.QtdRepeticao,
+        //                Status = x.Status.ToString()
+
+        //            })
+        //            .AsNoTracking()
+        //            .ToList();
+        //        return result;
+        //    }
+        //    else
+        //    {
+        //        var result = _db.Experimentos
+        //            .Where(expression).OrderBy(orderBy)
+        //            .Skip((page - 1) * itemPerPage)
+        //            .Take(itemPerPage).AsQueryable()
+        //            .Select(x => new GetExperimentoQueryResult()
+        //            {
+        //                Id = x.Id,
+        //                Nome = x.Nome.ToString(),
+        //                DataInicio = x.DataInicio.ToString("MM/dd/yyyy"),
+        //                QtdRepeticao = x.QtdRepeticao,
+        //                Status = x.Status.ToString()
+
+        //            })
+        //            .AsNoTracking()
+        //            .ToList();
+        //        return result;
+        //    }
+        //}
 
     }
 }

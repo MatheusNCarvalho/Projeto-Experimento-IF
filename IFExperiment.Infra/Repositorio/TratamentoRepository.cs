@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IFExperiment.Infra.Repositorio
 {
-    public class TratamentoRepository :Repositorio<Tratamento>, ITratamentoRepository
+    public class TratamentoRepository :Repositorio<Tratamento, GetTratamentoQueryResult>, ITratamentoRepository
     {
         private readonly AppDataContext _db;
 

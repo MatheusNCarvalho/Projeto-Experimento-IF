@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IFExperiment.Infra.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20180728002934_v1")]
+    [Migration("20180804140449_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,8 @@ namespace IFExperiment.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(5)");
 
+                    b.Property<int>("OrdemSequencia");
+
                     b.Property<Guid>("TratamentoId");
 
                     b.HasKey("Id");
@@ -92,7 +94,7 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<DateTime>("DataCadastrado");
 
-                    b.Property<DateTime>("DataConclusao");
+                    b.Property<DateTime?>("DataConclusao");
 
                     b.Property<DateTime?>("DataExclusao");
 
@@ -142,17 +144,11 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<int>("Acao");
 
-                    b.Property<DateTime?>("DataAlteracao");
-
                     b.Property<DateTime>("DataCadastrado");
-
-                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<string>("EntidadeAnterior");
 
                     b.Property<string>("EntidadeNova");
-
-                    b.Property<int>("Excluido");
 
                     b.Property<string>("NomeClass");
 
@@ -175,8 +171,6 @@ namespace IFExperiment.Infra.Migrations
                     b.Property<DateTime?>("DataExclusao");
 
                     b.Property<int>("Excluido");
-
-                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 

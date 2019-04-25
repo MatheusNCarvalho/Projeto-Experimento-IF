@@ -67,6 +67,8 @@ namespace IFExperiment.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(5)");
 
+                    b.Property<int>("OrdemSequencia");
+
                     b.Property<Guid>("TratamentoId");
 
                     b.HasKey("Id");
@@ -140,17 +142,11 @@ namespace IFExperiment.Infra.Migrations
 
                     b.Property<int>("Acao");
 
-                    b.Property<DateTime?>("DataAlteracao");
-
                     b.Property<DateTime>("DataCadastrado");
-
-                    b.Property<DateTime?>("DataExclusao");
 
                     b.Property<string>("EntidadeAnterior");
 
                     b.Property<string>("EntidadeNova");
-
-                    b.Property<int>("Excluido");
 
                     b.Property<string>("NomeClass");
 

@@ -17,3 +17,5 @@ C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\ob
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\obj\Debug\netcoreapp2.0\IFExperiment.Tests.csproj.CopyComplete
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\obj\Debug\netcoreapp2.0\IFExperiment.Tests.dll
 C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\obj\Debug\netcoreapp2.0\IFExperiment.Tests.pdb
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\bin\Debug\netcoreapp2.0\Dapper.Contrib.dll
+C:\Users\Matheus\workspace\Producao\Projeto-Experimento-IF\IFExperiment.Tests\bin\Debug\netcoreapp2.0\Dapper.Contrib.xml

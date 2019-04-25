@@ -1,9 +1,10 @@
 ﻿using System;
 using IFExperiment.Shared.Commands;
+using IFExperiment.Shared.Entities;
 
 namespace IFExperiment.Domain.ExperimentContext.Commands.Query
 {
-    public class GetExperimentoQueryResult : ICommandResult
+    public class GetExperimentoQueryResult : EntityResponse
     {
         public Guid Id { get; set; }
         public string Nome { get;  set; }

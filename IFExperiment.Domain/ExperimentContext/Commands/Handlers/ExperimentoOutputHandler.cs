@@ -36,7 +36,14 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
         {
             try
             {
-                return new CommandResult(_repository.GetByRange(filtro.MountExpression(), x => x.Nome.ToString(), true, filtro.Page, filtro.ItemPerPage));
+                var filtros = _repository.Filtro(filtro.MountExpression(),
+                    x => x.Nome.ToString(),
+                    true, out int totalRegistros,
+                    string.Empty,
+                    filtro.Offset,
+                    filtro.Limit);
+
+                return new CommandResult(filtros, totalRegistros);
             }
             catch (Exception e)
             {

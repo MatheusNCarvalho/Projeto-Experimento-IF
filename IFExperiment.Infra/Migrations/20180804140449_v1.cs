@@ -23,7 +23,7 @@ namespace IFExperiment.Infra.Migrations
                     Nome = table.Column<string>(type: "varchar(255)", nullable: false),
                     Codigo = table.Column<string>(type: "varchar(100)", nullable: true),
                     DataInicio = table.Column<DateTime>(nullable: false),
-                    DataConclusao = table.Column<DateTime>(nullable: false),
+                    DataConclusao = table.Column<DateTime>(nullable: true),
                     QtdRepeticao = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
@@ -39,9 +39,6 @@ namespace IFExperiment.Infra.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCadastrado = table.Column<DateTime>(nullable: false),
-                    DataAlteracao = table.Column<DateTime>(nullable: true),
-                    DataExclusao = table.Column<DateTime>(nullable: true),
-                    Excluido = table.Column<int>(nullable: false),
                     EntidadeAnterior = table.Column<string>(nullable: true),
                     EntidadeNova = table.Column<string>(nullable: true),
                     Usuario = table.Column<string>(nullable: true),
@@ -63,8 +60,7 @@ namespace IFExperiment.Infra.Migrations
                     DataAlteracao = table.Column<DateTime>(nullable: true),
                     DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
-                    Nome = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Status = table.Column<int>(nullable: false)
+                    Nome = table.Column<string>(type: "varchar(255)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,6 +135,7 @@ namespace IFExperiment.Infra.Migrations
                     DataAlteracao = table.Column<DateTime>(nullable: true),
                     DataExclusao = table.Column<DateTime>(nullable: true),
                     Excluido = table.Column<int>(nullable: false),
+                    OrdemSequencia = table.Column<int>(nullable: false),
                     NomeParcela = table.Column<string>(type: "varchar(5)", nullable: false),
                     TratamentoId = table.Column<Guid>(nullable: false),
                     BlocoId = table.Column<Guid>(nullable: false),

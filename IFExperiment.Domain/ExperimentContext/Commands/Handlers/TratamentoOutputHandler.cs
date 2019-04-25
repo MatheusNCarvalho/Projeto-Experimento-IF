@@ -27,20 +27,28 @@ namespace IFExperiment.Domain.ExperimentContext.Commands.Handlers
             }
             catch (Exception e)
             {
-                return new CommandResult(new { causa = e });
+                return new CommandResult(new { causa = e.Message });
             }
         }
 
 
-        public ICommandResult Get(TratamentoFiltro filtro)
+        public ICommandResult GetFiltro(TratamentoFiltro filtro)
         {
             try
             {
-                return new CommandResult(_experimentoRepository.GetByRange(filtro.MountExpression(), x=> x.Nome.ToString(), true, filtro.Page, filtro.ItemPerPage));
+                var filtros = _experimentoRepository.Filtro(filtro.MountExpression(),
+                    x => x.Nome.ToString(),
+                    true,
+                    out int totalRegistros,
+                    string.Empty,
+                    filtro.Offset,
+                    filtro.Limit);
+
+                return new CommandResult(filtros, totalRegistros);
             }
             catch (Exception e)
             {
-                return new CommandResult(new { causa = e });
+                return new CommandResult(new { causa = e.Message });
             }
         }
 

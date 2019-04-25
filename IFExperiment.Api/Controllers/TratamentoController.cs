@@ -22,14 +22,24 @@ namespace IFExperiment.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Filtro de Tratamento
+        /// </summary>
+        /// <param name="filtro"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v1/tratamentos")]
         public async Task<IActionResult> Get([FromQuery] TratamentoFiltro filtro)
         {
-            var result = _tratamentoOutputHandler.Get(filtro);
+            var result = _tratamentoOutputHandler.GetFiltro(filtro);
             return await GetResponse(result, _tratamentoOutputHandler.Notifications);
         }
 
+        /// <summary>
+        /// Busca Tratamento por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("v1/tratamentos/{id}")]
         public async Task<IActionResult> Get(Guid id)
@@ -38,7 +48,11 @@ namespace IFExperiment.Api.Controllers
             return await GetResponse(result, _tratamentoOutputHandler.Notifications);
         }
 
-
+        /// <summary>
+        /// Cria um novo tratamento
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("v1/tratamentos")]
         public async Task<IActionResult> Post([FromBody]TratamentoCommand command)
@@ -48,15 +62,25 @@ namespace IFExperiment.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Atualiza um tratamento existente
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("v1/tratamentos")]
         public async Task<IActionResult> Put([FromBody]TratamentoCommand command)
         {
             var result = _tratamentoHandler.HandlerUpdate(command);
-            return  await Response(result, _tratamentoHandler.Notifications);
+            return await Response(result, _tratamentoHandler.Notifications);
         }
 
 
+        /// <summary>
+        /// Apaga um tratamento
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("v1/tratamentos/{id}")]
         public async Task<IActionResult> Delete(Guid id)

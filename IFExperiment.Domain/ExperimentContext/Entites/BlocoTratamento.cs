@@ -18,10 +18,19 @@ namespace IFExperiment.Domain.ExperimentContext.Entites
             //_tipoAvalicoes = new List<TipoAvaliacao>();
         }
 
+        public BlocoTratamento(string nomeParcela, Bloco bloco, Tratamento tratamento, int ordemSequencia)
+        {
+
+            NomeParcela = nomeParcela;
+            Bloco = bloco;
+            Tratamento = tratamento;
+            OrdemSequencia = ordemSequencia;
+            //_tipoAvalicoes = new List<TipoAvaliacao>();
+        }
         //Para o EF
         protected BlocoTratamento() { }
-       
 
+        public int OrdemSequencia { get; set; }
         public string NomeParcela { get; protected set; }
         public Guid TratamentoId { get; protected set; }
         public Guid BlocoId { get; protected set; }

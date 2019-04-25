@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using IFExperiment.Api.Controllers;
 using IFExperiment.Domain.ExperimentContext.Commands.Handlers;
 using IFExperiment.Domain.ExperimentContext.Repositorio;
@@ -8,7 +9,7 @@ using IFExperiment.Infra.Repositorio;
 using IFExperiment.Infra.Transacao;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
@@ -22,9 +23,25 @@ namespace IFExperiment.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); });
+           // services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); });
+
+            // Configura o modo de compressão
+            services.Configure<GzipCompressionProviderOptions>(
+                options => options.Level = CompressionLevel.Optimal
+            );
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<GzipCompressionProvider>();
+                //options.EnableForHttps = true; habilitar essa configuração no caso de api esta usando https
+            });
+
+            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); }).AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
+
             services.AddCors();
-            services.AddResponseCompression();
 
             #region Injeção de Dependencia
             services.AddScoped<AppDataContext, AppDataContext>();

@@ -1,7 +1,4 @@
-﻿
-
-using FluentValidator;
-using HibernatingRhinos.Profiler.Appender.EntityFramework;
+﻿using FluentValidator;
 using IFExperiment.Domain.ExperimentContext.Entites;
 using IFExperiment.Infra.Mapping;
 using IFExperiment.Shared;
@@ -42,7 +39,9 @@ namespace IFExperiment.Infra.Contexts
         {
             
             optionsBuilder
-                .UseNpgsql(Settings.ConnectionStringHomologacao);
+                .UseNpgsql(Settings.ConnectionStringHomologacao)
+                .UseLazyLoadingProxies();
+            
 
             base.OnConfiguring(optionsBuilder);
         }

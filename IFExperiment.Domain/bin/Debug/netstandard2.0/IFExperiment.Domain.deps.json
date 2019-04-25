@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "2dd2992960da947f7cf713508cba23c238bd6f24"
+    "signature": "1f48eebbd2cf28cb1dbf445c02a1f47f668e5ee2"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,8 @@
         "dependencies": {
           "IFExperiment.Shared": "1.0.0",
           "LinqKit": "1.1.15",
-          "NETStandard.Library": "2.0.1"
+          "NETStandard.Library": "2.0.3",
+          "Dapper.Contrib": "1.50.5.0"
         },
         "runtime": {
           "IFExperiment.Domain.dll": {}
@@ -19,29 +20,52 @@
       },
       "FluentValidator/2.0.4": {
         "dependencies": {
-          "NETStandard.Library": "2.0.1"
+          "NETStandard.Library": "2.0.3"
         },
         "runtime": {
-          "lib/netstandard1.3/FluentValidator.dll": {}
+          "lib/netstandard1.3/FluentValidator.dll": {
+            "assemblyVersion": "2.0.4.0",
+            "fileVersion": "2.0.4.0"
+          }
         }
       },
       "LinqKit/1.1.15": {
         "runtime": {
-          "lib/net45/LinqKit.dll": {}
+          "lib/net45/LinqKit.dll": {
+            "assemblyVersion": "1.1.15.0",
+            "fileVersion": "1.1.15.0"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
       "IFExperiment.Shared/1.0.0": {
         "dependencies": {
-          "FluentValidator": "2.0.4"
+          "FluentValidator": "2.0.4",
+          "Newtonsoft.Json": "10.0.0.0"
         },
         "runtime": {
           "IFExperiment.Shared.dll": {}
+        }
+      },
+      "Dapper.Contrib/1.50.5.0": {
+        "runtime": {
+          "Dapper.Contrib.dll": {
+            "assemblyVersion": "1.50.5.0",
+            "fileVersion": "1.50.5.0"
+          }
+        }
+      },
+      "Newtonsoft.Json.Reference/10.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1.20720"
+          }
         }
       }
     }
@@ -73,15 +97,25 @@
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
-    "NETStandard.Library/2.0.1": {
+    "NETStandard.Library/2.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
-      "path": "netstandard.library/2.0.1",
-      "hashPath": "netstandard.library.2.0.1.nupkg.sha512"
+      "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
     "IFExperiment.Shared/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dapper.Contrib/1.50.5.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json.Reference/10.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
